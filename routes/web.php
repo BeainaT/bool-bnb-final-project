@@ -25,4 +25,6 @@ Route::middleware('auth')
 ->prefix('user')
 ->group(function() {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/dashboard', 'HomeController@showDashboard')->name('dashboard');
+    Route::resource('houses', 'HouseController');
 });
