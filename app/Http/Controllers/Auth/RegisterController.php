@@ -71,7 +71,7 @@ class RegisterController extends Controller
         if(isset($data['avatar'])){
             $data['avatar'] = Storage::put('uploads',$data['avatar']);
         } else {
-            $data['avatar'] = "Null";
+            $data['avatar'] = Null;
         };
 
         return User::create([
