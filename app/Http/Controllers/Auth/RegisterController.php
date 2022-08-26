@@ -69,8 +69,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if(isset($data['avatar'])){
-            $data['avatar']=Storage::put('uploads',$data['avatar']);
+            $data['avatar'] = Storage::put('uploads',$data['avatar']);
+        } else {
+            $data['avatar'] = "Null";
         };
+
         return User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
