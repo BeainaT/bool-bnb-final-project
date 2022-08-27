@@ -45,8 +45,9 @@ class HouseController extends Controller
         $data = $request->all();
         $newHouse = new House();
         $newHouse->fill($data);
-        $newHouse->image = Storage::put('uploads', $data['image']);
         $newHouse->user_id = Auth::id();
+        $newHouse->image = Storage::put('uploads', $data['image']);
+        $newHouse->is_visible = isset($data['is_visible']);
         $newHouse->latitude = 80.10;
         $newHouse->longitude = 100.10;
 
@@ -63,6 +64,7 @@ class HouseController extends Controller
      */
     public function show(House $house)
     {
+        ($house->user_id == Auth::id())?: abort(403);
         return view('user.houses.show', compact('house'));
     }
 
@@ -72,9 +74,10 @@ class HouseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(House $house)
     {
-        //
+        ($house->user_id == Auth::id())?: abort(403);
+        return view('user.houses.edit', compact('house'));
     }
 
     /**
@@ -84,9 +87,24 @@ class HouseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, House $house)
     {
-        //
+        ($house->user_id == Auth::id())?: abort(403);
+
+        $data = $request->all();
+        $house->fill($data);
+        if(isset($data['image'])) {
+            if($house->image) {
+                Storage::delete($house->image);
+            }
+            $house->image = Storage::put('uploads', $data['image']);
+        }
+        $house->is_visible = isset($data['is_visible']);
+        $house->latitude = 80.10;
+        $house->longitude = 100.10;
+        $house->save();
+
+        return redirect()->route('user.houses.show', compact('house'));
     }
 
     /**
@@ -97,6 +115,8 @@ class HouseController extends Controller
      */
     public function destroy(House $house)
     {
+        ($house->user_id == Auth::id())?: abort(403);
+        $house->image = Storage::delete($house->image);
         $house->delete();
         return redirect()->route('user.houses.index');
     }
