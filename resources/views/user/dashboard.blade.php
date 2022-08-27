@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h2>ciao utente</h2>
+                    <h2>ciao {{$user->name}}</h2>
                 </div>
                 <div class="card-body">
                     <button><a href="{{route('user.houses.create')}}"> inserisci appartamento</a></button>
