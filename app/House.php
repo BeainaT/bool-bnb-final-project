@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class House extends Model
 {
-    protected $fillable = ['name', 'number_rooms', 'number_beds', 'number_bathrooms', 'square_meters', 'address', 'description', 'price'];
+    protected $fillable = ['name', 'number_rooms', 'number_beds', 'number_bathrooms', 'square_meters', 'description', 'price'];
+
     public function user(){
         return $this->belongsTo('App\User');
     }

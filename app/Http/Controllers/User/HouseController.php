@@ -42,14 +42,22 @@ class HouseController extends Controller
      */
     public function store(Request $request)
     {
+    
         $data = $request->all();
         $newHouse = new House();
         $newHouse->fill($data);
+        $newHouse->address = $data['address'];
+
+        //-- TomTom API call to save latitude and longitude on DB, from address input
+        $url = 'https://api.tomtom.com/search/2/geocode/'.$newHouse->address.'.json?storeResult=false&view=Unified&key='.$this->getAPIkey();
+        $obj = $this->getAddressJson($url);
+        $myAddressArr = $obj->results[0]->position;
+        $newHouse->latitude = $myAddressArr->lat;
+        $newHouse->longitude = $myAddressArr->lon;
+        //--
         $newHouse->user_id = Auth::id();
         $newHouse->image = Storage::put('uploads', $data['image']);
         $newHouse->is_visible = isset($data['is_visible']);
-        $newHouse->latitude = 80.10;
-        $newHouse->longitude = 100.10;
 
         $newHouse->save();
 
@@ -99,9 +107,15 @@ class HouseController extends Controller
             }
             $house->image = Storage::put('uploads', $data['image']);
         }
+        $house->address = $data['address'];
+        $url = 'https://api.tomtom.com/search/2/geocode/'.$house->address.'.json?storeResult=false&view=Unified&key='.$this->getAPIkey();
+        $obj = $this->getAddressJson($url);
+        $myAddressArr = $obj->results[0]->position;
+        $house->latitude = $myAddressArr->lat;
+        $house->longitude = $myAddressArr->lon;
+
         $house->is_visible = isset($data['is_visible']);
-        $house->latitude = 80.10;
-        $house->longitude = 100.10;
+
         $house->save();
 
         return redirect()->route('user.houses.show', compact('house'));
@@ -119,5 +133,16 @@ class HouseController extends Controller
         $house->image = Storage::delete($house->image);
         $house->delete();
         return redirect()->route('user.houses.index');
+    }
+
+    private function getAPIkey() {
+        return $myAPIkey = 'oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N';
+    }
+
+    //this function makes readible url to get content and returns json
+    private function getAddressJson($url) {
+        $newUrl = str_replace(' ', '%20', $url);
+        $json = file_get_contents($newUrl);
+        return json_decode($json);
     }
 }
