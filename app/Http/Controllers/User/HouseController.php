@@ -6,10 +6,28 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use App\House;
+use App\User;
 
 class HouseController extends Controller
 {
+    private $validation = [
+        'name' => 'required|string|max:100|unique:houses',
+        'user_id' => 'exists:users,id',
+        'number_rooms' => 'required|integer|between:1,255',
+        'number_beds' => 'required|integer|between:1,255',
+        'number_bathrooms' => 'required|integer|between:1,255',
+        'square_meters' => 'required|integer|between:1,32767',
+        'address' => 'required|string|max:100',
+        'image' => 'required|mimes:jpg,png,bmp,jpeg|max:1024',
+        'description' => 'nullable|string|max:65535',
+        'price' => 'nullable|numeric|between:0.00,9999.99',
+        'is_visible' => 'accepted|sometimes',
+        'latitude' => 'numeric|between:-90.000000,90.000000',
+        'longitude' => 'numeric|between:-180.000000,180.000000'
+    ];   
+    
     /**
      * Display a listing of the resource.
      *
@@ -42,10 +60,11 @@ class HouseController extends Controller
      */
     public function store(Request $request)
     {
-    
-        $data = $request->all();
+        $data = $request->validate($this->validation);
+
         $newHouse = new House();
         $newHouse->fill($data);
+        $newHouse->name = $data['name'];
         $newHouse->address = $data['address'];
 
         //-- TomTom API call to save latitude and longitude on DB, from address input
@@ -98,22 +117,28 @@ class HouseController extends Controller
     public function update(Request $request, House $house)
     {
         ($house->user_id == Auth::id())?: abort(403);
+        //this allows the user to keep the same house's name on house update even if value must be unique
+        $this->validation['name'] = $this->validation['name'].',user_id,';
+        $data = $request->validate($this->validation);
 
-        $data = $request->all();
         $house->fill($data);
+        $house->name = $data['name'];
+        //replace required img stored in uploads folder at store method, with new img uploaded in update method
         if(isset($data['image'])) {
             if($house->image) {
                 Storage::delete($house->image);
             }
             $house->image = Storage::put('uploads', $data['image']);
         }
+        //--
         $house->address = $data['address'];
+        //-- TomTom API call to save latitude and longitude on DB, from updated address input
         $url = 'https://api.tomtom.com/search/2/geocode/'.$house->address.'.json?storeResult=false&view=Unified&key='.$this->getAPIkey();
         $obj = $this->getAddressJson($url);
         $myAddressArr = $obj->results[0]->position;
         $house->latitude = $myAddressArr->lat;
         $house->longitude = $myAddressArr->lon;
-
+        //--
         $house->is_visible = isset($data['is_visible']);
 
         $house->save();
