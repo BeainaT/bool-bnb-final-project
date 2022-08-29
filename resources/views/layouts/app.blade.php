@@ -51,25 +51,28 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{-- {{ Auth::user()->name }} --}}
                                     @if (Auth::user()->avatar == Null)
-                                        <img style="width:50px" src="{{asset('/img/user/default_user_image.jpg')}}" alt="">
+                                        <img style="width:50px; border-radius:50px; width:50px; height:50px; object-fit:cover; " src="{{asset('/img/user/default_user_image.jpg')}}" alt="">
                                     @else
-                                        <img style="width:50px" src="{{asset('storage/'.Auth::user()->avatar)}}" alt="">                                        
+                                        <img style="width:50px; border-radius:50px; width:50px; height:50px; object-fit:cover; " src="{{asset('storage/'.Auth::user()->avatar)}}" alt="">                                        
                                     @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('user.dashboard')}}">Dashboard</a>
+                                    <a class="dropdown-item" href="{{route('user.houses.index')}}">Lista appartamenti</a>
+                                    <a class="dropdown-item" href="{{route('user.houses.create')}}">Inserisci appartamenti</a>
+                                    <hr>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                    <a class="dropdown-item" href="{{route('user.dashboard')}}">Dashboard</a>
+                                    
 
                                 </div>
                             </li>
