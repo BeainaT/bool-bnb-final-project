@@ -8,20 +8,23 @@ class House extends Model
 {
     protected $fillable = ['number_rooms', 'number_beds', 'number_bathrooms', 'square_meters', 'description', 'price'];
 
+    // Many to one 
     public function user(){
         return $this->belongsTo('App\User');
     }
-    public function services(){
-        return $this->belongsToMany('App\Service');
+    public function typology(){
+        return $this->belongsTo('App\Typology');
     }
-    public function typologies(){
-        return $this->belongsToMany('App\Typology');
-    }
+    // One to many 
     public function messages(){
         return $this->hasMany('App\Message');
     }
     public function view_ratings(){
         return $this->hasMany('App\View_rating');
+    }
+    // Many to Many
+    public function services(){
+        return $this->belongsToMany('App\Service');
     }
     public function promotes(){
         return $this->belongsToMany('App\Promote');

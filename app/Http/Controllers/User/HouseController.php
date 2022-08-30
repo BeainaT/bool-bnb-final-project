@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\House;
 use App\User;
+use App\Service;
+use App\Typology;
 
 class HouseController extends Controller
 {
@@ -25,7 +27,9 @@ class HouseController extends Controller
         'price' => 'nullable|numeric|between:0.00,9999.99',
         'is_visible' => 'accepted|sometimes',
         'latitude' => 'numeric|between:-90.000000,90.000000',
-        'longitude' => 'numeric|between:-180.000000,180.000000'
+        'longitude' => 'numeric|between:-180.000000,180.000000',
+        'services' => 'nullable|exists:services,id',
+        'typologies' => 'nullable|exists:typology,id'
     ];   
     
     /**
@@ -49,7 +53,9 @@ class HouseController extends Controller
      */
     public function create()
     {
-        return view('user.houses.create');
+        $services = Service::all();
+        $typologies = Typology::all();
+        return view('user.houses.create', compact('services', 'typologies'));
     }
 
     /**
@@ -80,6 +86,11 @@ class HouseController extends Controller
 
         $newHouse->save();
 
+        //add services to pivot table house_service
+        if(isset($data['services'])) {
+            $newHouse->services()->attach($data['services']);
+        }
+
         return redirect()->route('user.houses.show', $newHouse->id);
     }
 
@@ -104,7 +115,14 @@ class HouseController extends Controller
     public function edit(House $house)
     {
         ($house->user_id == Auth::id())?: abort(403);
-        return view('user.houses.edit', compact('house'));
+
+        $services = Service::all();
+
+        $houseServices = $house->services->map(function ($service) {
+            return $service->id;
+        })->toArray();
+
+        return view('user.houses.edit', compact('house', 'services', 'houseServices'));
     }
 
     /**
@@ -142,6 +160,14 @@ class HouseController extends Controller
         $house->is_visible = isset($data['is_visible']);
 
         $house->save();
+
+        //update services
+        $services = isset($data['services']) ? $data['services'] : [];
+
+        $house->services()->sync($services);
+
+        //update typology
+
 
         return redirect()->route('user.houses.show', compact('house'));
     }

@@ -119,12 +119,50 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- Essential Services --}}
+                        <div class="form-group row">
+                            <label for="services" class="col-md-4 col-form-label text-md-right">Servizi essenziali:</label>
+                            <div class="form-check-inline row col-md-8 col-form-label">
+                                @foreach ($services as $service)
+                                    @if ($service['type'] == 'essenziali')
+                                        <div class="col-md-4">
+                                            <input class="form-check-input" type="checkbox" id="{{$service->name}}" value="{{$service->id}}" name="services[]" {{in_array($service->id, old('services', $houseServices)) ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="{{$service->name}}">
+                                                {{$service->name}}
+                                            </label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            @error('services')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        {{-- Premium Services --}}
+                        <div class="form-group row">
+                            <label for="services" class="col-md-4 col-form-label text-md-right pt-2">Servizi premium:</label>
+                            <div class="form-check-inline row col-md-8 col-form-label">
+                                @foreach ($services as $service)
+                                    @if ($service['type'] == 'premium')
+                                        <div class="col-md-4">
+                                            <input class="form-check-input" type="checkbox" id="{{$service->name}}" value="{{$service->id}}" name="services[]" {{in_array($service->id, old('services', $houseServices)) ? 'checked' : ''}}>
+                                            <label class="form-check-label" for="{{$service->name}}">
+                                                {{$service->name}}
+                                            </label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                            @error('services')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                         {{-- visibility --}}
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input @error('is_visible') is-invalid @enderror" id="visible" name="is_visible" {{old('is_visible', $house->is_visible) ? 'checked' : ''}}>
-                                    <label class="form-check-label" for="visible">Pubblica</label>
+                                    <label class="form-check-label" for="visible">Visibile</label>
                                     @error('is_visible')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
