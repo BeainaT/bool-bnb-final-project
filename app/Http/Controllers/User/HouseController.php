@@ -20,7 +20,7 @@ class HouseController extends Controller
         'number_bathrooms' => 'required|integer|between:1,255',
         'square_meters' => 'required|integer|between:1,32767',
         'address' => 'required|string|max:100',
-        'image' => 'required_without:image|mimes:jpg,png,bmp,jpeg|max:1024',
+        'image' => 'required|mimes:jpg,png,bmp,jpeg|max:1024',
         'description' => 'nullable|string|max:65535',
         'price' => 'nullable|numeric|between:0.00,9999.99',
         'is_visible' => 'accepted|sometimes',
@@ -119,17 +119,18 @@ class HouseController extends Controller
         ($house->user_id == Auth::id())?: abort(403);
         //this allows the user to keep the same house's name on house update even if value must be unique
         $this->validation['name'] = $this->validation['name'].',user_id,';
+        $this->validation['image'] = 'nullable|mimes:jpg,png,bmp,jpeg|max:1024';
         $data = $request->validate($this->validation);
 
         $house->fill($data);
         $house->name = $data['name'];
         //replace required img stored in uploads folder at store method, with new img uploaded in update method
         if(isset($data['image'])) {
-            $house->image = $data['image'];
+            if($house->image) {
+                Storage::delete($house->image);
+            }
+            $house->image = Storage::put('uploads', $data['image']);
         }
-            // if($house->image) {
-            //     Storage::delete($house->image);
-            // }
         //--
         $house->address = $data['address'];
         //-- TomTom API call to save latitude and longitude on DB, from updated address input
