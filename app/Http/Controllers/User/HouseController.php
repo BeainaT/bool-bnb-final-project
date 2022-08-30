@@ -17,6 +17,7 @@ class HouseController extends Controller
     private $validation = [
         'name' => 'required|string|max:100|unique:houses',
         'user_id' => 'exists:users,id',
+        'typology_id' => 'nullable|exists:typologies,id',
         'number_rooms' => 'required|integer|between:1,255',
         'number_beds' => 'required|integer|between:1,255',
         'number_bathrooms' => 'required|integer|between:1,255',
@@ -29,7 +30,7 @@ class HouseController extends Controller
         'latitude' => 'numeric|between:-90.000000,90.000000',
         'longitude' => 'numeric|between:-180.000000,180.000000',
         'services' => 'nullable|exists:services,id',
-        'typologies' => 'nullable|exists:typology,id'
+        // 'typologies' => 'exists:typologies,id|nullable'
     ];   
     
     /**
@@ -84,6 +85,11 @@ class HouseController extends Controller
         $newHouse->image = Storage::put('uploads', $data['image']);
         $newHouse->is_visible = isset($data['is_visible']);
 
+        //add typology id into house table
+        if(isset($data['typologies'])) {
+            $newHouse->typology_id = $data['typologies'];
+        }
+
         $newHouse->save();
 
         //add services to pivot table house_service
@@ -117,12 +123,13 @@ class HouseController extends Controller
         ($house->user_id == Auth::id())?: abort(403);
 
         $services = Service::all();
+        $typologies = Typology::all();
 
         $houseServices = $house->services->map(function ($service) {
             return $service->id;
         })->toArray();
 
-        return view('user.houses.edit', compact('house', 'services', 'houseServices'));
+        return view('user.houses.edit', compact('house', 'services', 'typologies', 'houseServices'));
     }
 
     /**
@@ -159,6 +166,11 @@ class HouseController extends Controller
         $house->longitude = $myAddressArr->lon;
         //--
         $house->is_visible = isset($data['is_visible']);
+
+        //update typology id into house table
+        // if(isset($data['typologies'])) {
+        //     $house->typology_id = $data['typologies'];
+        // }
 
         $house->save();
 

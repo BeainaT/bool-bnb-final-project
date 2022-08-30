@@ -119,7 +119,7 @@
                         </div>
                         {{-- Essential Services --}}
                         <div class="form-group row">
-                            <label for="services" class="col-md-4 col-form-label text-md-right">Servizi essenziali:</label>
+                            <label for="services" class="col-md-4 col-form-label text-md-right">Servizi essenziali</label>
                             <div class="form-check-inline row col-md-8 col-form-label">
                                 @foreach ($services as $service)
                                     @if ($service['type'] == 'essenziali')
@@ -131,15 +131,15 @@
                                         </div> 
                                     @endif
                                 @endforeach
+                                @error('services')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                            @error('services')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                         {{-- Premium Services --}}
                         <div class="form-group row">
-                            <label for="services" class="col-md-4 col-form-label text-md-right">Servizi premium:</label>
-                            <div class="form-check-inlin row col-md-8 col-form-label">
+                            <label for="services" class="col-md-4 col-form-label text-md-right">Servizi premium</label>
+                            <div class="form-check-inline row col-md-8 col-form-label">
                                 @foreach ($services as $service)
                                     @if ($service['type'] == 'premium')
                                         <div class="col-md-4">
@@ -150,8 +150,21 @@
                                         </div>
                                     @endif
                                 @endforeach
+                                @error('services')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                            @error('services')
+                        </div>
+                        {{-- Typologies --}}
+                        <div class="form-group row">
+                            <label for="typologies" class="col-md-4 col-form-label text-md-right">Tipologia</label>
+                            <select class="form-select form-select-lg col-md-8 col-form-label" id="typologies" name="typologies">
+                                <option>Seleziona una tipologia:</option>
+                                @foreach ($typologies as $typology)
+                                    <option value="{{$typology->id}}" {{old('typology_id') == $typology->id ? 'selected' : ''}}>{{$typology->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('typologies')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>

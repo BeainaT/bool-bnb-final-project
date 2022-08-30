@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class House extends Model
 {
-    protected $fillable = ['number_rooms', 'number_beds', 'number_bathrooms', 'square_meters', 'description', 'price'];
+    protected $guarded = ['services'];
+
+    protected $fillable = ['number_rooms', 'number_beds', 'number_bathrooms', 'square_meters', 'description', 'price', 'typology_id'];
 
     // Many to one 
     public function user(){
