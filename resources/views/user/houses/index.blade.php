@@ -17,13 +17,10 @@
                                 {{$house->address}}
                                 <a href="{{route('user.houses.show', $house->id)}}" class="btn btn-primary">Visualizza</a>
                                 <a href="{{route('user.houses.edit', $house->id)}}" class="btn btn-warning">modifica</a>
-                                <form action="{{route('user.houses.destroy', $house->id)}}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger">elimina</button>
-                                </form>
+                                <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#ModalDelete{{$house->id}}">{{ __('Elimina') }}</button>
                             </li>                            
                         @endforeach
+                        @include('user.houses.modal.delete')
                     </ul>
                 </div>
             </div>
