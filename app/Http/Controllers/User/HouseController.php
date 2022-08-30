@@ -137,6 +137,7 @@ class HouseController extends Controller
         ($house->user_id == Auth::id())?: abort(403);
         //this allows the user to keep the same house's name on house update even if value must be unique
         $this->validation['name'] = $this->validation['name'].',user_id,';
+        $this->validation['image'] = 'nullable|mimes:jpg,png,bmp,jpeg|max:1024';
         $data = $request->validate($this->validation);
 
         $house->fill($data);
