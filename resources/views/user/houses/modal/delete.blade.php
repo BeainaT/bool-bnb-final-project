@@ -5,12 +5,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">{{ __('Sei sicuro di voler cancellare questa casa?') }}</h4>
+                <h4 class="modal-title">{{ __("Confermi l'eliminazione di ".$house->name."?") }}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal body">Sei sicuro di voler cancellare <b>{$house->id}}</b>?</div>
             <div class="modal-footer">
                 <button type="button" class="btn gray btn-outline-secondary" data-dismiss="modal">{{ __('Annulla') }}</button>
                 <button type="submit" class="btn btn-outline-danger">{{  __('Elimina') }}</button>
