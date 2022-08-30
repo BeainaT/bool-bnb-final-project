@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
+
 class RegisterController extends Controller
 {
     /*
@@ -56,7 +57,7 @@ class RegisterController extends Controller
             'date_of_birth' => ['date', 'nullable'],
             'avatar' => ['mimes:jpg,png,bmp, jpeg', 'max:1024', 'nullable'],
             'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
     }
 
