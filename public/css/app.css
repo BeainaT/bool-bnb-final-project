@@ -10969,11 +10969,18 @@ a.text-dark:focus {
   border-radius: 0 15px 15px 0;
 }
 
-.background-register {
-  background-image: url("https://insidecolumbia.net/wp-content/uploads/2019/11/Exterior-Photos-3-copy_featuredImage-750x430.jpg");
+.background-form {
   background-size: cover;
   background-position: center;
   border-radius: 15px 0 0 15px;
+}
+
+.register {
+  background-image: url("https://insidecolumbia.net/wp-content/uploads/2019/11/Exterior-Photos-3-copy_featuredImage-750x430.jpg");
+}
+
+.login {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThblhJrkkOLBOmVnZ2IN-Mku36z5ov6-oYB94BCUO3vMZSbGQCmBGZN4l40VtksFox4vA&usqp=CAU");
 }
 
 @media screen and (max-width: 768px) {

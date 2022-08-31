@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4 background-register">
+        <div class="col-md-4 background-form register">
             {{-- Questo div contiene una immagine di background --}}
         </div>
         <div class="col-md-8 pl-0">
