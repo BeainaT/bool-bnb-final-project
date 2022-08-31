@@ -27,3 +27,7 @@ Route::middleware('auth')
     Route::get('/home', 'HomeController@index')->name('dashboard');
     Route::resource('houses', 'HouseController');
 });
+
+Route::any("{any}", function() {
+    return view('guest.home');
+})->where('any', '.*');
