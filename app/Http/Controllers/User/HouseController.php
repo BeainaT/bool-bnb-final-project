@@ -22,7 +22,7 @@ class HouseController extends Controller
         'number_beds' => 'required|integer|between:1,255',
         'number_bathrooms' => 'required|integer|between:1,255',
         'square_meters' => 'required|integer|between:1,32767',
-        'address' => 'required|string|max:100',
+        'address' => 'required|string|min:2|max:100',
         'image' => 'required|mimes:jpg,png,bmp,jpeg|max:1024',
         'description' => 'nullable|string|max:65535',
         'price' => 'nullable|numeric|between:0.00,9999.99',
