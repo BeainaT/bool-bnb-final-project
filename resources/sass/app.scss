@@ -21,3 +21,11 @@
     border-radius: 15px 0 0 15px;
 
 }
+
+// ###### MEDIA QUERY ###### 
+
+@media screen and (max-width: 768px) {
+    .card {
+        border-radius: 15px 15px 15px 15px;
+    }
+}
