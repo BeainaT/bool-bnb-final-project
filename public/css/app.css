@@ -10966,5 +10966,13 @@ a.text-dark:focus {
 .card {
   background-color: #495867;
   color: #f7f7ff;
+  border-radius: 0 15px 15px 0;
+}
+
+.background-register {
+  background-image: url("https://insidecolumbia.net/wp-content/uploads/2019/11/Exterior-Photos-3-copy_featuredImage-750x430.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px 0 0 15px;
 }
 
