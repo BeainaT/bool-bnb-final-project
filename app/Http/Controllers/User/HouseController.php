@@ -29,7 +29,7 @@ class HouseController extends Controller
         'is_visible' => 'accepted|sometimes',
         'latitude' => 'numeric|between:-90.000000,90.000000',
         'longitude' => 'numeric|between:-180.000000,180.000000',
-        'services' => 'nullable|exists:services,id',
+        'services' => 'required|exists:services,id',
         // 'typologies' => 'exists:typologies,id|nullable'
     ];   
     
