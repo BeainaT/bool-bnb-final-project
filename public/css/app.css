@@ -11039,6 +11039,23 @@ a.text-dark:focus {
   border-radius: 100%;
 }
 
+.buttons {
+  font-size: 1.125rem;
+  text-decoration: none;
+}
+
+.buttons .view {
+  color: #bfd7ff;
+}
+
+.buttons .edit {
+  color: #9bb1ff;
+}
+
+.buttons .delete {
+  color: #fe5f55;
+}
+
 @media screen and (max-width: 768px) {
   .card {
     border-radius: 15px 15px 15px 15px;

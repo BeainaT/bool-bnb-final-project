@@ -90,6 +90,25 @@
     border-radius: 100%;
 }
 
+// ###### Buttons lista appartamenti ########
+
+.buttons {
+    font-size: 1.125rem;
+    text-decoration: none;
+
+    .view {
+        color: $light_blue;
+    }
+
+    .edit {
+        color: $blue_purple;
+    }
+
+    .delete {
+        color: $orange_red;
+    }
+}
+
 // ###### MEDIA QUERY ###### 
 
 @media screen and (max-width: 768px) {

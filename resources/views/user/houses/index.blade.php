@@ -13,7 +13,7 @@
                         @foreach ($houses as $house)
                             <li>
                                 <div class="row">
-                                    <div class="col-6 d-flex align-items-center"> 
+                                    <div class="col-6 d-flex align-items-center justify-content-between"> 
                                         <div class="img-house pr-2">
                                             @if (File::exists(public_path('storage/'.$house->image)))
                                             <img src="{{asset('storage/'.$house->image)}}" alt="" />
@@ -23,10 +23,10 @@
                                         </div> 
                                         {{$house->name}}
                                         {{$house->address}}</div>
-                                        <div class="col-6 d-flex align-items-center gap-2 buttons"> 
-                                            <a href="{{route('user.houses.show', $house->id)}}"><i class="fa-regular fa-eye"></i> Visualizza</a>
-                                            <a href="{{route('user.houses.edit', $house->id)}}"><i class="fa-solid fa-pen-to-square"></i> Modifica</a>
-                                            <a href="#" data-toggle="modal" data-target="#ModalDelete{{$house->id}}"><i class="fa-solid fa-trash"></i> {{ __('Elimina') }}</a></div>
+                                        <div class="col-6 d-flex align-items-center justify-content-around buttons"> 
+                                            <a class="view" href="{{route('user.houses.show', $house->id)}}"><i class="fa-regular fa-eye"></i> Visualizza</a>
+                                            <a class="edit" href="{{route('user.houses.edit', $house->id)}}"><i class="fa-solid fa-pen-to-square"></i> Modifica</a>
+                                            <a class="delete" href="#" data-toggle="modal" data-target="#ModalDelete{{$house->id}}"><i class="fa-solid fa-trash"></i> {{ __('Elimina') }}</a></div>
                                   
                                 </div>
                                 
