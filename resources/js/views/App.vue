@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <BaseMain/>
-  </div>
+  <BaseMain/>
 </template>
 
 <script>

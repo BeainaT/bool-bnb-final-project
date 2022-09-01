@@ -1,5 +1,5 @@
 <template>
-     <div class="app">
+     <div class="carousel_container">
         <carousel-button>
             <carousel-slide v-for="slide in slides" :key="slide" class="carousel-slider">
                 <img :src="slide" :alt="slide">
@@ -31,8 +31,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .app {
+    .carousel_container {
         display:flex;
         justify-content: center;
+        width: 100%;
     }
 </style>

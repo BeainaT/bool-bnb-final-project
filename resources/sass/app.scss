@@ -7,7 +7,11 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-
+main {
+    min-height: calc(100vh - 19rem);
+    display:flex;
+    align-items: center;
+}
 .card {
     background-color: $black_coral;
     color: $ghost_white;
@@ -21,13 +25,16 @@
     border-radius: 15px 0 0 15px;
 
 }
-
+.register,
+.login {
+    margin: 1.25rem 0;
+}
 .register {
-    background-image: url('/images/Casa-5.jpg');
+    background-image: url('/img/backoffice/Casa-5.jpg');
 }
 
 .login {
-    background-image: url('/images/login.jpg');
+    background-image: url('/img/backoffice/login.jpg');
 }
 footer{
     text-align: center;

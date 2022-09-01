@@ -1,6 +1,6 @@
 <template>
-    <div class="main">
-        <h1>Ciao patati, benvenuti su 4BnB</h1>
+    <div class="main_content">
+        <h1>Benvenuti su 4BnB</h1>
         <carousel/>
     </div>
 </template>
@@ -13,6 +13,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
-
+<style lang="scss" scoped>
+    .main_content {
+        width: 100%;
+        text-align: center;
+    }
 </style>

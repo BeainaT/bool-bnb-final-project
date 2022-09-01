@@ -81,7 +81,9 @@
             </div>
         </nav>
     </header>
-    @yield('content')
+    <main>
+        @yield('content')
+    </main>
     <footer class="mt-3 py-3">
         <div class="footer_top">
             <div class="container">
