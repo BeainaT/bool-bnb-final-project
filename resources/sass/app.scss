@@ -7,6 +7,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// ###### Classi cards BackOffice #######
 
 .card {
     background-color: $black_coral;
@@ -32,6 +33,10 @@
 .login {
     background-image: url('/images/login.jpg');
 }
+
+
+
+// ####### Classi Pagina Dashboard #######
 
 .welcome {
     text-transform: uppercase;
