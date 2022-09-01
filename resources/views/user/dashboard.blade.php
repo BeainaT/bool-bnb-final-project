@@ -7,7 +7,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center welcome">Bentornato {{$user->name}}</h2>
+                    <h2 class="text-center uppercase">Bentornato {{$user->name}}</h2>
                 </div>
                 <div class="card-body d-flex justify-content-between">
                     <div class="dash"><a href="{{route('user.houses.create')}}"><i class="fa-solid fa-house-chimney-window"></i> Inserisci appartamento</a></div>

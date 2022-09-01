@@ -10991,6 +10991,10 @@ a.text-dark:focus {
   background-image: url("/images/login.jpg");
 }
 
+.card-body ul li {
+  list-style: none;
+}
+
 .dashboard {
   padding-top: 200px;
   padding-bottom: 200px;
@@ -11004,7 +11008,7 @@ a.text-dark:focus {
   opacity: 90%;
 }
 
-.welcome {
+.uppercase {
   text-transform: uppercase;
 }
 
