@@ -7,15 +7,19 @@ window.onload = () => {
     let check = false;
     do {
         pswConfirm.addEventListener("keyup", function() {
-            if(psw.value === pswConfirm.value) {
-                sendForm.disabled = false;
-                alert.innerHTML = '';
-                pswConfirm.style.borderColor = "green";
-                check = true;
+            if(pswConfirm.value != "") {
+                if(psw.value === pswConfirm.value) {
+                    sendForm.disabled = false;
+                    alert.innerHTML = '';
+                    pswConfirm.style.borderColor = "lightgreen";
+                    check = true;
+                } else {
+                    alert.innerHTML = 'Le passwords devono coincidere';
+                    pswConfirm.style.borderColor = "red";
+                    sendForm.disabled = true;
+                }
             } else {
-                alert.innerHTML = 'Le passwords devono coincidere';
-                pswConfirm.style.borderColor = "red";
-                sendForm.disabled = true;
+                pswConfirm.style.borderColor = "#ced4da";
             }
         });
     } while(check == true);

@@ -49654,15 +49654,19 @@ window.onload = function () {
 
     do {
       pswConfirm.addEventListener("keyup", function () {
-        if (psw.value === pswConfirm.value) {
-          sendForm.disabled = false;
-          alert.innerHTML = '';
-          pswConfirm.style.borderColor = "green";
-          check = true;
+        if (pswConfirm.value != "") {
+          if (psw.value === pswConfirm.value) {
+            sendForm.disabled = false;
+            alert.innerHTML = '';
+            pswConfirm.style.borderColor = "lightgreen";
+            check = true;
+          } else {
+            alert.innerHTML = 'Le passwords devono coincidere';
+            pswConfirm.style.borderColor = "red";
+            sendForm.disabled = true;
+          }
         } else {
-          alert.innerHTML = 'Le passwords devono coincidere';
-          pswConfirm.style.borderColor = "red";
-          sendForm.disabled = true;
+          pswConfirm.style.borderColor = "#ced4da";
         }
       });
     } while (check == true);
@@ -49694,23 +49698,15 @@ window.onload = function () {
 /***/ }),
 
 /***/ 0:
-/*!************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/scripts/pswConfirm.js ./resources/sass/app.scss ./resources/sass/guest/front.scss ***!
-  \************************************************************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/guest/front.scss ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! C:\Users\tania\Desktop\BOOLEAN\bool-bnb-final-project\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\tania\Desktop\BOOLEAN\bool-bnb-final-project\resources\js\scripts\pswConfirm.js */"./resources/js/scripts/pswConfirm.js");
-__webpack_require__(/*! C:\Users\tania\Desktop\BOOLEAN\bool-bnb-final-project\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\tania\Desktop\BOOLEAN\bool-bnb-final-project\resources\sass\guest\front.scss */"./resources/sass/guest/front.scss");
-=======
 __webpack_require__(/*! /Users/marcellomiceli/esercizi/bool-bnb-final-project/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/marcellomiceli/esercizi/bool-bnb-final-project/resources/js/scripts/pswConfirm.js */"./resources/js/scripts/pswConfirm.js");
 __webpack_require__(/*! /Users/marcellomiceli/esercizi/bool-bnb-final-project/resources/sass/app.scss */"./resources/sass/app.scss");
 module.exports = __webpack_require__(/*! /Users/marcellomiceli/esercizi/bool-bnb-final-project/resources/sass/guest/front.scss */"./resources/sass/guest/front.scss");
->>>>>>> dab52e317d1bdd43c19e7e1daa039a75ae0b2732
 
 
 /***/ })
