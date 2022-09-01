@@ -10995,6 +10995,10 @@ a.text-dark:focus {
   list-style: none;
 }
 
+.img-house img {
+  width: 5rem;
+}
+
 .dashboard {
   padding-top: 200px;
   padding-bottom: 200px;

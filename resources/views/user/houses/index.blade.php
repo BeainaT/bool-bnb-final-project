@@ -13,7 +13,15 @@
                         @foreach ($houses as $house)
                             <li>
                                 <div class="row">
-                                    <div class="col-6">  <img style="width:50px;" src="{{asset('storage/'.$house->image)}}" alt="">
+                                    <div class="col-6 d-flex"> 
+                                        <div class="img-house pr-2">
+                                            @if (File::exists(public_path('storage/'.$house->image)))
+    <img src="{{asset('storage/'.$house->image)}}" alt="" />
+@else 
+    <img src="{{ asset('images/iconhouse.png') }}" alt="" />
+@endif
+                                            <img style="width:50px;" src="" alt="">
+                                        </div> 
                                         {{$house->name}}
                                         {{$house->address}}</div>
                                         <div class="col-6"> <a href="{{route('user.houses.show', $house->id)}}" class="btn btn-primary">Visualizza</a>
