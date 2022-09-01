@@ -10991,13 +10991,27 @@ a.text-dark:focus {
   text-transform: uppercase;
 }
 
+.dash {
+  padding: 10px 10px;
+}
+
+.dash:hover {
+  box-shadow: 2px 2px 4px 4px #bfd7ff inset;
+  border-radius: 0.9375rem;
+}
+
 .dash a {
   text-decoration: none;
   color: #f7f7ff;
   font-size: 1.25rem;
-  border: 1px solid #f7f7ff;
   padding: 0.625rem;
-  border-radius: 0.9375rem;
+}
+
+.dash .fa-solid {
+  color: #fe5f55;
+  border: 2px solid #fe5f55;
+  padding: 0.625rem;
+  border-radius: 100%;
 }
 
 @media screen and (max-width: 768px) {

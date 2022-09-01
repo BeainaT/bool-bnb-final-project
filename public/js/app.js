@@ -49704,9 +49704,9 @@ window.onload = function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/marcellomiceli/esercizi/bool-bnb-final-project/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/marcellomiceli/esercizi/bool-bnb-final-project/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/marcellomiceli/esercizi/bool-bnb-final-project/resources/sass/guest/front.scss */"./resources/sass/guest/front.scss");
+__webpack_require__(/*! C:\Users\ivanb\Documents\Boolean\boolbnb-team4\bool-bnb-final-project\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\ivanb\Documents\Boolean\boolbnb-team4\bool-bnb-final-project\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\ivanb\Documents\Boolean\boolbnb-team4\bool-bnb-final-project\resources\sass\guest\front.scss */"./resources/sass/guest/front.scss");
 
 
 /***/ })

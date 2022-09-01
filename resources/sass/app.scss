@@ -37,13 +37,27 @@
     text-transform: uppercase;
 }
 
+.dash {
+    padding: 10px 10px;
+}
+
+.dash:hover {
+    box-shadow: 2px 2px 4px 4px $light_blue inset;
+    border-radius: .9375rem;
+}
+
 .dash a {
     text-decoration: none;
     color: $ghost_white;
     font-size: 1.25rem;
-    border: 1px solid $ghost_white;
     padding: .625rem;
-    border-radius: .9375rem;
+}
+
+.dash .fa-solid {
+    color: $orange_red;
+    border: 2px solid $orange_red;
+    padding: .625rem;
+    border-radius: 100%;
 }
 
 // ###### MEDIA QUERY ###### 
