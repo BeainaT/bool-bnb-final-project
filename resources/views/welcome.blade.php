@@ -84,6 +84,5 @@
     <div id="app">
         @yield('content')
     </div>
-    <script src="{{asset('js/front.js')}}"></script> 
 </body>
 </html>
