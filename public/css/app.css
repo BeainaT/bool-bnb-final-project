@@ -10976,11 +10976,11 @@ a.text-dark:focus {
 }
 
 .register {
-  background-image: url(/images/Casa-5.jpg?276dafe41f091c9780778666532f978a);
+  background-image: url("/images/Casa-5.jpg");
 }
 
 .login {
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThblhJrkkOLBOmVnZ2IN-Mku36z5ov6-oYB94BCUO3vMZSbGQCmBGZN4l40VtksFox4vA&usqp=CAU");
+  background-image: url("/images/login.jpg");
 }
 
 @media screen and (max-width: 768px) {
