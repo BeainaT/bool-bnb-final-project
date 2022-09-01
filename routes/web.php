@@ -24,5 +24,5 @@ Route::middleware('auth')
 });
 
 Route::any("{any}", function() {
-    return view('welcome');
+    return view('front.home');
 })->where('any', '.*');

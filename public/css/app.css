@@ -10967,6 +10967,7 @@ a.text-dark:focus {
   background-color: #495867;
   color: #f7f7ff;
   border-radius: 0 15px 15px 0;
+  margin: 1.25rem 0;
 }
 
 .background-form {
@@ -10981,6 +10982,32 @@ a.text-dark:focus {
 
 .login {
   background-image: url("/images/login.jpg");
+}
+
+footer {
+  text-align: center;
+  color: #F7F7FF;
+  background-color: #495867;
+}
+
+footer ul {
+  display: flex;
+  text-transform: uppercase;
+  list-style: none;
+}
+
+footer ul li {
+  padding: 0.25rem;
+  align-items: center;
+  justify-content: center;
+}
+
+footer img {
+  width: 100%;
+}
+
+footer img:hover {
+  box-shadow: 0.25rem 0.25rem 0.25rem 0.25rem #788BFF;
 }
 
 @media screen and (max-width: 768px) {

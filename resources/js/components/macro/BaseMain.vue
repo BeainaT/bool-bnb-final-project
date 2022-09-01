@@ -1,5 +1,5 @@
 <template>
-    <div class="body">
+    <div class="main">
         <h1>Ciao patati, benvenuti su 4BnB</h1>
         <carousel/>
     </div>
