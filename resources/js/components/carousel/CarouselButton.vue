@@ -12,12 +12,6 @@ export default {
         return {
             index : 0,
             slides : [],
-            slideDirection: '',
-        }
-    },
-    computed: {
-        slidesLength() {
-            return this.slides.length;
         }
     },
     mounted(){
@@ -29,17 +23,15 @@ export default {
     methods: {
         next(){
             this.index++;
-            if(this.index >= this.slidesLength){
+            if(this.index >= this.slides.length){
                 this.index = 0;
             }
-            this.slideDirection = 'slide-right';
         },
         prev(){
             this.index--;
             if(this.index < 0){
-                this.index = this.slidesLength - 1;
+                this.index = this.slides.length - 1;
             }
-             this.slideDirection = 'slide-left';
         },
         checkSlide(event){
             if(event.keyCode === 39){
