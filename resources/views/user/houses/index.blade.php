@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<section class="background-img house-list">
 <div class="container">
     <div class="row justify-content-center pt-5">
         <div class="col-md-8">
@@ -41,4 +42,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection

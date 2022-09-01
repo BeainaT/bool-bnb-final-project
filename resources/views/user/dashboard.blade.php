@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="dashboard">
+<section class="background-img dashboard">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
