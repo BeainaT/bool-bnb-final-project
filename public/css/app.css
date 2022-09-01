@@ -10979,12 +10979,29 @@ a.text-dark:focus {
   border-radius: 15px 0 0 15px;
 }
 
+.light-radius {
+  border-radius: 5px;
+}
+
 .register {
   background-image: url("/images/Casa-5.jpg");
 }
 
 .login {
   background-image: url("/images/login.jpg");
+}
+
+.dashboard {
+  padding-top: 200px;
+  padding-bottom: 200px;
+  background-image: url("/images/backhouse.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.dashboard .card {
+  opacity: 90%;
 }
 
 .welcome {
