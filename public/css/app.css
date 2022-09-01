@@ -10987,6 +10987,19 @@ a.text-dark:focus {
   background-image: url("/images/login.jpg");
 }
 
+.welcome {
+  text-transform: uppercase;
+}
+
+.dash a {
+  text-decoration: none;
+  color: #f7f7ff;
+  font-size: 1.25rem;
+  border: 1px solid #f7f7ff;
+  padding: 0.625rem;
+  border-radius: 0.9375rem;
+}
+
 @media screen and (max-width: 768px) {
   .card {
     border-radius: 15px 15px 15px 15px;

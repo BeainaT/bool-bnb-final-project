@@ -33,6 +33,19 @@
     background-image: url('/images/login.jpg');
 }
 
+.welcome {
+    text-transform: uppercase;
+}
+
+.dash a {
+    text-decoration: none;
+    color: $ghost_white;
+    font-size: 1.25rem;
+    border: 1px solid $ghost_white;
+    padding: .625rem;
+    border-radius: .9375rem;
+}
+
 // ###### MEDIA QUERY ###### 
 
 @media screen and (max-width: 768px) {
