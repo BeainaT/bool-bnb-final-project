@@ -12,6 +12,7 @@
     background-color: $black_coral;
     color: $ghost_white;
     border-radius: 0 15px 15px 0;
+    margin: 1.25rem 0;
 }
 
 .background-form {
@@ -27,6 +28,31 @@
 
 .login {
     background-image: url('/images/login.jpg');
+}
+footer{
+    text-align: center;
+    color: #F7F7FF;
+    background-color: #495867;
+
+    ul{
+        display: flex;
+        text-transform: uppercase;
+        list-style: none;
+        // column-gap: 2rem;
+        li{
+            // display: flex;
+            padding: .250rem;
+            align-items: center;
+            justify-content: center;
+            // gap: .625rem;
+        }
+    }
+    img{
+        width: 100%;
+    }
+    img:hover {
+    box-shadow: .250rem .250rem .250rem .250rem #788BFF;
+}
 }
 
 // ###### MEDIA QUERY ###### 
