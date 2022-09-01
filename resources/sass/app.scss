@@ -11,6 +11,10 @@
 .card {
     background-color: $black_coral;
     color: $ghost_white;
+    border-radius: 15px;
+}
+
+.card-form {
     border-radius: 0 15px 15px 0;
 }
 

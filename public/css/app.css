@@ -10966,6 +10966,10 @@ a.text-dark:focus {
 .card {
   background-color: #495867;
   color: #f7f7ff;
+  border-radius: 15px;
+}
+
+.card-form {
   border-radius: 0 15px 15px 0;
 }
 

@@ -7,7 +7,7 @@
             {{-- Questo div contiene una immagine di background --}}
         </div>
         <div class="col-md-8 pl-0">
-            <div class="card">
+            <div class="card card-form">
                 <div class="card-header">{{ __('Accedi') }}</div>
 
                 <div class="card-body">
