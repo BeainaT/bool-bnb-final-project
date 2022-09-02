@@ -10985,11 +10985,6 @@ main {
   border-radius: 15px 0 0 15px;
 }
 
-.register,
-.login {
-  margin: 1.25rem 0;
-}
-
 .register {
   background-image: url("/img/backoffice/Casa-5.jpg");
 }
