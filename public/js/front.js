@@ -14033,11 +14033,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
 module.exports = __webpack_require__(/*! C:\esercizi_php\bool-bnb-final-project\resources\js\front.js */"./resources/js/front.js");
-=======
-module.exports = __webpack_require__(/*! C:\Users\ivanb\Documents\Boolean\boolbnb-team4\bool-bnb-final-project\resources\js\front.js */"./resources/js/front.js");
->>>>>>> feat-front-dashboard-user
 
 
 /***/ })
