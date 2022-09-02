@@ -19,7 +19,7 @@
                                             @if (File::exists(public_path('storage/'.$house->image)))
                                             <img src="{{asset('storage/'.$house->image)}}" alt="" />
                                             @else 
-                                            <img src="{{ asset('images/iconhouse.png') }}" alt="" />
+                                            <img src="{{ asset('img/iconhouse.png') }}" alt="" />
                                             @endif
                                         </div> 
                                         {{$house->name}}

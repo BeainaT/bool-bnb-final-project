@@ -10984,11 +10984,11 @@ a.text-dark:focus {
 }
 
 .register {
-  background-image: url("/images/Casa-5.jpg");
+  background-image: url("/img/Casa-5.jpg");
 }
 
 .login {
-  background-image: url("/images/login.jpg");
+  background-image: url("/img/login.jpg");
 }
 
 .card-body ul li {
@@ -11000,7 +11000,7 @@ a.text-dark:focus {
 }
 
 .background-img {
-  background-image: url("/images/backhouse.jpg");
+  background-image: url("/img/backhouse.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -11009,13 +11009,13 @@ a.text-dark:focus {
 .house-list {
   padding-top: 60px;
   padding-bottom: 100px;
-  background-image: url("/images/house-list.jpg");
+  background-image: url("/img/house-list.jpg");
 }
 
 .dashboard {
   padding-top: 200px;
   padding-bottom: 200px;
-  background-image: url("/images/backhouse.jpg");
+  background-image: url("/img/backhouse.jpg");
 }
 
 .background-img .card {
