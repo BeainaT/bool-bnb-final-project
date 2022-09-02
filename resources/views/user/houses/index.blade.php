@@ -8,10 +8,10 @@
                 <div class="card-header">
                     <h2>I tuoi appartamenti</h2>
                 </div>
-                <div class="card-body">
-                    <ul>
+                <div>
+                    <ul class="list-unstyled">
                         @foreach ($houses as $house)
-                            <li>
+                            <li class="p-2">
                                 <img style="width:50px;" src="{{asset('storage/'.$house->image)}}" alt="">
                                 {{$house->name}}
                                 {{$house->address}}
