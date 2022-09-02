@@ -1,8 +1,12 @@
 <template>
-    <div class="main_content">
-        <h1>Benvenuti su 4BnB</h1>
-        <carousel/>
-    </div>
+    <router-view>
+        <div class="main_content">
+            <h1>Benvenuti su 4BnB</h1>
+            <carousel/>
+        </div>
+        <button class="btn btn-primary">try router</button>
+        <router-link :to="{ name: 'search' }">try router</router-link>
+    </router-view>
 </template>
 
 <script>
