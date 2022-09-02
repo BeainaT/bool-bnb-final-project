@@ -131,7 +131,7 @@ window.onload = function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\esercizi_php\bool-bnb-final-project\resources\js\scripts\pswConfirm.js */"./resources/js/scripts/pswConfirm.js");
+module.exports = __webpack_require__(/*! /Users/emanueleguidi/Desktop/BoolBnB-Team4/bool-bnb-final-project/resources/js/scripts/pswConfirm.js */"./resources/js/scripts/pswConfirm.js");
 
 
 /***/ })

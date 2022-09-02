@@ -15,17 +15,18 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <strong>4BnB</strong>
+                    <i class="fa-solid fa-house"></i> 
+                    <span>4BnB</span> 
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -59,7 +60,6 @@
                                         <img style="border-radius:50px; width:30px; height:30px; object-fit:cover; " src="{{asset('storage/'.Auth::user()->avatar)}}" alt="">                                        
                                     @endif
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{route('user.dashboard')}}">Dashboard</a>
                                     <a class="dropdown-item" href="{{route('user.houses.index')}}">Lista appartamenti</a>
@@ -84,37 +84,21 @@
     <main>
         @yield('content')
     </main>
-    <footer class="mt-3 py-3">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-3">
-                        <div class="box_image">
-                            <a href="http://home"></a>
-                            <img src="https://loghi-famosi.com/wp-content/uploads/2020/07/Airbnb-Logo.png" alt="logo">
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <h6>
-                            Sito regolarmente registrato presso Boolean.
-                            Tutti i diritti riservati.
-                            La responsabilità legale è di chi ci crede.
-                        </h6>
-                    </div>
-                    <div class="col-sm-12 col-md-3">
-                        <ul>
-                        <li><a href="http://www.facebook.com"></a><img src="https://icons-for-free.com/iconfiles/png/512/facebook+high+quality+media+social+social+media+square+icon-1320192615308993674.png" alt="FB"></li>
-                        <li><a href="http://www.twitter.com"></a><img src="https://upload.wikimedia.org/wikipedia/it/0/09/Twitter_bird_logo.png?20160903181542" alt="TW"></li>
-                        <li><a href="http://www.youtube.com"></a><img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/youtube_logo_icon_168737.png" alt="YT"></li>
-                        <li><a href="http://www.pinterest.com"></a><img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="PT"></li>
-                        </ul>
-                    </div>
-                </div>    
+    <footer class="py-1">
+        <div class="container">
+            <div class="row">
+                <div class="rights col">
+                    <p>2022 4BnB</p>
+                    <p>Sito regolarmente registrato presso Boolean.</p>
+                </div>
+                <div class="social col-2">
+                    <a href="http://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="http://www.twitter.com"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="http://www.youtube.com"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="http://www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
+                </div>
             </div>
         </div>  
-        <div class="footer_bottom py-3">
-            <p>Fatto con passione da Tania, Emanuele, Ettore, Ivan e Marcello</p>
-        </div>
     </footer>
 </body>
 </html>
