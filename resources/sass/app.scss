@@ -7,14 +7,23 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+<<<<<<< HEAD
 main {
     min-height: calc(100vh - 19rem);
     display:flex;
     align-items: center;
 }
+=======
+// ###### Classi cards BackOffice #######
+
+>>>>>>> feat-front-dashboard-user
 .card {
     background-color: $black_coral;
     color: $ghost_white;
+    border-radius: 15px;
+}
+
+.card-form {
     border-radius: 0 15px 15px 0;
 }
 
@@ -28,6 +37,7 @@ main {
     border-radius: 15px 0 0 15px;
 
 }
+<<<<<<< HEAD
 .register,
 .login {
     margin: 1.25rem 0;
@@ -63,6 +73,100 @@ footer{
     img:hover {
     box-shadow: .250rem .250rem .250rem .250rem #788BFF;
 }
+=======
+
+.light-radius {
+    border-radius: 5px;
+}
+
+.register {
+    background-image: url('/img/Casa-5.jpg');
+}
+
+.login {
+    background-image: url('/img/login.jpg');
+}
+
+
+.card-body ul li {
+    list-style: none;
+}
+
+.img-house img {
+    width: 5rem;
+}
+
+
+// ####### Classi Pagina Dashboard #######
+
+.background-img {
+    background-image: url('/img/backhouse.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.house-list {
+    padding-top: 60px;
+    padding-bottom: 100px;
+    background-image: url('/img/house-list.jpg');
+}
+
+.dashboard {
+    padding-top: 200px;
+    padding-bottom: 200px;
+    background-image: url('/img/backhouse.jpg');
+}
+
+.background-img .card {
+    opacity: 90%;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.dash {
+    padding: 10px 10px;
+}
+
+.dash:hover {
+    box-shadow: 2px 2px 4px 4px $light_blue inset;
+    border-radius: .9375rem;
+}
+
+.dash a {
+    text-decoration: none;
+    color: $ghost_white;
+    font-size: 1.25rem;
+    padding: .625rem;
+}
+
+.dash .fa-solid {
+    color: $orange_red;
+    border: 2px solid $orange_red;
+    padding: .625rem;
+    border-radius: 100%;
+}
+
+// ###### Buttons lista appartamenti ########
+
+.buttons {
+    font-size: 1.125rem;
+    text-decoration: none;
+
+    .view {
+        color: $light_blue;
+    }
+
+    .edit {
+        color: $blue_purple;
+    }
+
+    .delete {
+        color: $orange_red;
+    }
+>>>>>>> feat-front-dashboard-user
 }
 
 // ###### MEDIA QUERY ###### 
