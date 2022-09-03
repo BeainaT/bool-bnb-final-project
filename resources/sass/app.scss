@@ -7,164 +7,235 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-main {
-    min-height: calc(100vh - 19rem);
-    display:flex;
-    align-items: center;
-}
-// ###### Classi cards BackOffice #######
+//Fontawesome
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-.card {
-    background-color: $black_coral;
-    color: $ghost_white;
-    border-radius: 15px;
+/*----------------
+    BODY
+----------------*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
-
-.card-form {
-    border-radius: 0 15px 15px 0;
-}
-
-.modal-title{
+/*----------------
+    LINKS
+----------------*/
+.btn {
+    background-color: $ghost_white;
     color: $black_coral;
+    text-decoration: none;
 }
 
-.background-form {
-    background-size: cover;
-    background-position: center;
-    border-radius: 15px 0 0 15px;
-
+.btn:hover {
+    background-color: $light_blue;
 }
-
-.register {
-    background-image: url('/img/backoffice/Casa-5.jpg');
+/*----------------
+    COMMON
+----------------*/
+p {
+    margin: 0;
 }
+/*----------------
+    HEADER
+----------------*/
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 20;
 
-.login {
-    background-image: url('/img/backoffice/login.jpg');
-}
-footer{
-    text-align: center;
-    color: #F7F7FF;
-    background-color: #495867;
-
-    ul{
-        display: flex;
-        text-transform: uppercase;
-        list-style: none;
-        // column-gap: 2rem;
-        li{
-            // display: flex;
-            padding: .250rem;
+    .navbar {
+        background-color: $ghost_white;
+        color: $black_coral;
+    
+        .navbar-brand {
+            display: flex;
+            align-items: baseline;
+        }
+        .nav-link {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            // gap: .625rem;
+            gap: .3125rem;
+        }
+        .dropdown-menu {
+            background-color: $ghost_white !important;
+            color: $black_coral !important;
+        }
+        a {
+            color: inherit;
+            font-weight: 500;
         }
     }
-    img{
+}
+
+/*----------------
+    MAIN
+----------------*/
+main {
+    min-height: 100vh;
+    padding-top: 5.125rem;
+    padding-bottom: 3.25rem;
+
+    //Create blade
+    .img_list_houses {
         width: 100%;
-    }
-    img:hover {
-    box-shadow: .250rem .250rem .250rem .250rem #788BFF;
-}
-
-.light-radius {
-    border-radius: 5px;
-}
-
-.register {
-    background-image: url('/img/Casa-5.jpg');
-}
-
-.login {
-    background-image: url('/img/login.jpg');
-}
-
-
-.card-body ul li {
-    list-style: none;
-}
-
-.img-house img {
-    width: 5rem;
-}
-
-
-// ####### Classi Pagina Dashboard #######
-
-.background-img {
-    background-image: url('/img/backhouse.jpg');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.house-list {
-    padding-top: 60px;
-    padding-bottom: 100px;
-    background-image: url('/img/house-list.jpg');
-}
-
-.dashboard {
-    padding-top: 200px;
-    padding-bottom: 200px;
-    background-image: url('/img/backhouse.jpg');
-}
-
-.background-img .card {
-    opacity: 90%;
-}
-
-.uppercase {
-    text-transform: uppercase;
-}
-
-.dash {
-    padding: 10px 10px;
-}
-
-.dash:hover {
-    box-shadow: 2px 2px 4px 4px $light_blue inset;
-    border-radius: .9375rem;
-}
-
-.dash a {
-    text-decoration: none;
-    color: $ghost_white;
-    font-size: 1.25rem;
-    padding: .625rem;
-}
-
-.dash .fa-solid {
-    color: $orange_red;
-    border: 2px solid $orange_red;
-    padding: .625rem;
-    border-radius: 100%;
-}
-
-// ###### Buttons lista appartamenti ########
-
-.buttons {
-    font-size: 1.125rem;
-    text-decoration: none;
-
-    .view {
-        color: $light_blue;
+        max-height: 5rem;
     }
 
-    .edit {
-        color: $blue_purple;
+    // ###### Classi cards BackOffice #######
+    .card {
+        background-color: $black_coral;
+        color: $ghost_white;
+        border-radius: 15px;
+    }
+    .card-form {
+        border-radius: 0 15px 15px 0;
+    }
+    .modal-title{
+        color: $black_coral;
+    }
+    .background-form {
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px 0 0 15px;
+    
+    }
+    .register {
+        background-image: url('/img/backoffice/Casa-5.jpg');
+    }
+    .login {
+        background-image: url('/img/backoffice/login.jpg');
+    }
+    .light-radius {
+        border-radius: .3125rem;
+    }
+    .card-body ul li {
+        list-style: none;
+    }
+    .img-house img {
+        width: 5rem;
     }
 
-    .delete {
+    // ####### Dashboard Page#######
+    .background-img {
+        background-image: url('/img/backhouse.jpg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .house-list {
+        padding-top: 60px;
+        padding-bottom: 100px;
+        background-image: url('/img/house-list.jpg');
+    }
+    .dashboard {
+        background-image: url('/img/backhouse.jpg');
+    }
+
+    .background-img .card {
+        opacity: 90%;
+    }
+
+    .uppercase {
+        text-transform: uppercase;
+    }
+
+    .dash {
+        padding: 10px 10px;
+    }
+
+    .dash:hover {
+        box-shadow: 2px 2px 4px 4px $light_blue inset;
+        border-radius: .9375rem;
+    }
+
+    .dash a {
+        text-decoration: none;
+        color: $ghost_white;
+        font-size: 1.25rem;
+        padding: .625rem;
+    }
+
+    .dash .fa-solid {
         color: $orange_red;
+        border: 2px solid $orange_red;
+        padding: .625rem;
+        border-radius: 100%;
+    }
+
+    //Icons user's houses list
+
+    .icon {
+        font-size: 1.125rem;
+        text-decoration: none;
+
+        &.delete {
+            color: $orange_red;
+        }
+
+        &.sponsor {
+            color: $yellow;
+        }
+
+    }
+
+    // ###### Show house page ########
+    .container_house_image {
+
+
+        .img_house_show {
+            width: 100%;
+        }
+    }
+}
+
+/*----------------
+    FOOTER
+----------------*/
+footer{
+    color: $black_coral;
+    background-color: $ghost_white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-top: .25rem solid $black_coral;
+    margin-bottom: .25 solid $black_coral;
+    box-shadow: 0 -.125rem .25rem rgba($black, .075);
+
+    i {
+        color: $black_coral;
+    }
+
+    .row {
+        align-items: center;
+        justify-content: space-between;
+    }
+    .rights, .social {
+        display: flex;
+        gap: .5rem;
+    }
+
+    .social {
+        justify-content: right;
+    }
+    img{
+        width: 2rem;
+
+        &.home_footer{
+            width: 4rem;
+        }
     }
 }
 
 // ###### MEDIA QUERY ###### 
-
 @media screen and (max-width: 768px) {
     .card {
         border-radius: 15px 15px 15px 15px;
     }
-}
 }

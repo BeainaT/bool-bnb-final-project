@@ -85,7 +85,7 @@ class HouseController extends Controller
         $newHouse->image = Storage::put('uploads', $data['image']);
         $newHouse->is_visible = isset($data['is_visible']);
 
-        //add typology id into house table
+         //add typology id into house table
         if(isset($data['typologies'])) {
             $newHouse->typology_id = $data['typologies'];
         }

@@ -1,8 +1,8 @@
 @extends('welcome')
 @section('content')
 <div class="container">
-    <div class="row justify-content-center pt-5">
-        <div class="col-md-8">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-header">
                     <h2>Modifica appartamento</h2>
@@ -161,15 +161,17 @@
                         {{-- Typologies --}}
                         <div class="form-group row">
                             <label for="typologies" class="col-md-4 col-form-label text-md-right">Tipologia</label>
-                            <select class="form-select form-select-lg col-md-8 col-form-label" id="typologies" name="typologies">
-                                <option value="Null">Seleziona una tipologia:</option>
-                                @foreach ($typologies as $typology)
-                                    <option value="{{$typology['id']}}" {{old('typology_id', $house->typology_id) == $typology->id ? 'selected' : ''}}>{{$typology['name']}}</option>
-                                @endforeach
-                            </select>
-                            @error('typologies')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                            <div class="col-md-6">
+                                <select class="form-control col-form-label light-radius" id="typologies" name="typologies">
+                                    <option value="Null">Seleziona una tipologia:</option>
+                                    @foreach ($typologies as $typology)
+                                        <option value="{{$typology['id']}}" {{old('typology_id', $house->typology_id) == $typology->id ? 'selected' : ''}}>{{$typology['name']}}</option>
+                                    @endforeach
+                                </select>
+                                @error('typologies')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                         {{-- visibility --}}
                         <div class="form-group row">
@@ -183,7 +185,12 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit">Modifica</button>
+                        <div class="container">
+                            <div class="row justify-content-between">
+                                <a class="btn btn-light" href="{{route('user.houses.show', $house->id)}}">Annulla</a>
+                                <button class="btn btn-light" type="submit">Conferma modifica</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
