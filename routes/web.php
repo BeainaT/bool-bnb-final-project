@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
+//Backoffice
 Route::middleware('auth')
 ->namespace('User')
 ->name('user.')
@@ -23,6 +24,8 @@ Route::middleware('auth')
     Route::resource('houses', 'HouseController');
 });
 
+
+//Frontoffice
 Route::any("{any}", function() {
     return view('front.home');
 })->where('any', '.*');

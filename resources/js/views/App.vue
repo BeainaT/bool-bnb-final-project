@@ -1,16 +1,18 @@
 <template>
-  <BaseMain/>
+  <div class="main">
+    <h1>Benvenuti su 4BnB</h1>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import BaseMain from '../components/macro/BaseMain.vue';
 export default {
   name: 'App',
-  components: {
-    BaseMain
-  },
 }
 </script>
 
 <style>
+.main {
+  text-align: center;
+}
 </style>
