@@ -8,7 +8,7 @@ class House extends Model
 {
     protected $guarded = ['services'];
 
-    protected $fillable = ['number_rooms', 'number_beds', 'number_bathrooms', 'square_meters', 'description', 'price', 'typology_id'];
+    protected $fillable = ['number_rooms', 'number_beds', 'number_bathrooms', 'square_meters', 'description', 'price', 'typologies', 'typology_id'];
 
     // Many to one 
     public function user(){

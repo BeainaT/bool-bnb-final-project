@@ -81,6 +81,9 @@ main {
     padding-top: 5.125rem;
     padding-bottom: 3.25rem;
 
+    .card-header {
+        color: $cornflower_blue;
+    }
     //Create blade
     .img_list_houses {
         width: 100%;
