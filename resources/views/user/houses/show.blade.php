@@ -38,19 +38,33 @@
                                 Metri quadrati: {{$house->square_meters}}
                             </li>
                             <hr>
+                            @if(isset($typology->name))
+                                <li>
+                                    Tipologia di alloggio: {{$typology->name}}
+                                </li>
+                                <hr>
+                            @endif
                             <li>
-                                Tipologia di alloggio: {{$house->typology_id}}
+                                <p>Servizi inclusi:</p> 
+                                @foreach ($services as $service)
+                                    <ul>
+                                        <li>{{$service->name}}</li>
+                                    </ul>
+                                @endforeach 
                             </li>
                             <hr>
-                            <li>
-                                Servizi: 
-                            </li>
+                            @if(isset($house->price))
+                                <li>
+                                    Prezzo: {{$house->price}} euro
+                                </li>
+                                <hr>
+                            @endif
                         </ul>
                     </div>
                     <div class="container">
                         <div class="row justify-content-between">
-                            <a class="btn" href="{{route('user.houses.index')}}">Torna alla lista</a>
-                            <a class="btn" href="{{route('user.houses.edit', $house->id)}}">Modifica</a>
+                            <a class="btn col-5" href="{{route('user.houses.index')}}">Torna alla lista</a>
+                            <a class="btn col-5" href="{{route('user.houses.edit', $house->id)}}">Modifica</a>
                         </div>
                     </div>
                 </div>
