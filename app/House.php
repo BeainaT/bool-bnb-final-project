@@ -9,7 +9,11 @@ class House extends Model
     protected $guarded = ['services'];
 
     protected $fillable = ['number_rooms', 'number_beds', 'number_bathrooms', 'square_meters', 'description', 'price', 'typologies', 'typology_id'];
+    protected $appends = ['image_path'];
 
+    public function getImagePathAttribute() {
+        return $this->image ? asset("storage/{$this->image}") : null;
+    }
     // Many to one 
     public function user(){
         return $this->belongsTo('App\User');

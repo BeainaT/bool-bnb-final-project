@@ -1926,7 +1926,11 @@ __webpack_require__.r(__webpack_exports__);
       _this.imgSlider = res.data;
 
       _this.imgSlider.forEach(function (elm) {
-        _this.slides.push(elm.image);
+        if (elm.image[0] == 'i') {
+          _this.slides.push(elm.image);
+        } else {
+          _this.slides.push("./storage/".concat(elm.image));
+        }
       });
     });
   }
@@ -15801,7 +15805,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/emanueleguidi/Desktop/BoolBnB-Team4/bool-bnb-final-project/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\tania\Desktop\BOOLEAN\bool-bnb-final-project\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

@@ -33,9 +33,12 @@ export default {
             .then((res) => {
                 this.imgSlider = res.data;
                 this.imgSlider.forEach((elm) => {
-                    this.slides.push(elm.image);
-                    
-                })
+                    if(elm.image[0] == 'i') {
+                        this.slides.push(elm.image);
+                    } else {
+                        this.slides.push(`./storage/${elm.image}`)
+                    }                    
+                }) 
             }) 
     },
 }
