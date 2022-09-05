@@ -13,7 +13,7 @@
                         @foreach ($houses as $house)
                         <div class="row align-items-center justify-content-center my-1">
                             <div class="col-3 py-1">
-                                <img class="img_list_houses" src="{{asset('storage/'.$house->image)}}" alt="">
+                                <img class="img_list_houses" src="{{str_starts_with($house->image, 'i') ? asset($house->image) : asset('storage/'.$house->image)}}" alt="">
                             </div>
                             <div class="col-9 col-lg-4 py-1">
                                 <div class="house_name">

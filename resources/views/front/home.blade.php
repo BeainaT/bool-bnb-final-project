@@ -4,5 +4,5 @@
     <div id="app">
         
     </div>
-    <script src="{{asset('js/front.js')}}"></script>
+    <script src="{{asset('js/front.js')}}" async defer></script>
 @endsection

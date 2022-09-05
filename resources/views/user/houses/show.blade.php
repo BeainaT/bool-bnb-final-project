@@ -10,11 +10,7 @@
                 </div>
                 <div class="card-body row">
                     <div class="container_house_image col-4">
-                        @if ($house->image == "default")
-                            <img class="img_house_show" src="{{asset('img/houses/default_house.jpeg')}}" alt="">
-                        @else
-                            <img class="img_house_show" src="{{asset('storage/'.$house->image)}}" alt="">
-                        @endif   
+                        <img class="img_house_show" src="{{str_starts_with($house->image, 'i') ? asset($house->image) : asset('storage/'.$house->image)}}" alt="">
                     </div>
                     <div class="container_house_details col-8">
                         <ul>
