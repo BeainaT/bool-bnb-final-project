@@ -12,4 +12,13 @@ class HouseController extends Controller
         $houses = House::all();
         return $houses;
     }
+
+    public function show(Request $request) {
+        return $request;
+    }
+
+    public function showThen(Request $request) {
+        $data = $request->all();
+        dd($data);
+    }
 }

@@ -19,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('houses', 'Api\HouseController@index');
+// Route::post('houses', 'Api\HouseController@store');
+Route::post('houses/show', 'Api\HouseController@show');
+// Route::get('houses/show', 'Api\HouseController@showThen');
