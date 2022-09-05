@@ -21521,6 +21521,10 @@ main {
   padding-bottom: 3.25rem;
 }
 
+main .card-header {
+  color: #788bff;
+}
+
 main .img_list_houses {
   width: 100%;
   max-height: 5rem;

@@ -86,8 +86,8 @@ class HouseController extends Controller
         $newHouse->is_visible = isset($data['is_visible']);
 
          //add typology id into house table
-        if(isset($data['typologies'])) {
-            $newHouse->typology_id = $data['typologies'];
+        if(($request->input('typologies')) != Null) {
+            $newHouse->typology_id = $request->input('typologies');
         }
 
         $newHouse->save();
@@ -107,9 +107,20 @@ class HouseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(House $house)
-    {
-        ($house->user_id == Auth::id())?: abort(403);
-        return view('user.houses.show', compact('house'));
+    {   
+
+        if($house->user_id !== Auth::id()) {
+            abort(403);
+        }
+        //get the typology connected to the house
+        $typology = Typology::where('id', $house->typology_id)->first();
+
+        //get services connected to the house
+        $services = $house->services()->get();
+    
+
+
+        return view('user.houses.show', compact('house', 'typology', 'services'));
     }
 
     /**
@@ -168,9 +179,9 @@ class HouseController extends Controller
         $house->is_visible = isset($data['is_visible']);
 
         //update typology id into house table
-        // if(isset($data['typologies'])) {
-        //     $house->typology_id = $data['typologies'];
-        // }
+        if(($request->input('typologies')) != Null) {
+            $house->typology_id = $request->input('typologies');
+        }
 
         $house->save();
 

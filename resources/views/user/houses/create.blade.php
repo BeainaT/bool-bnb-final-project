@@ -196,8 +196,8 @@
                         </div>  
                         <div class="container">
                             <div class="row justify-content-between">
-                                <a class="btn btn-light" href="{{route('user.houses.index')}}">Annulla</a>
-                                <button class="btn btn-light" type="submit">Inserisci</button>
+                                <a class="btn col-5" href="{{route('user.houses.index')}}">Annulla</a>
+                                <button class="btn col-5" type="submit">Inserisci</button>
                             </div>
                         </div>
                     </div> 

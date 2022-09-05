@@ -9,8 +9,8 @@
                     <h2>Ciao {{$user->name}}</h2>
                 </div>
                 <div class="card-body d-flex justify-content-between">
-                    <a class="btn" href="{{route('user.houses.create')}}">Inserisci appartamento</a>
-                    <a class="btn" href="{{route('user.houses.index')}}">Lista appartamenti</a>
+                    <a class="btn col-5" href="{{route('user.houses.create')}}">Inserisci appartamento</a>
+                    <a class="btn col-5" href="{{route('user.houses.index')}}">Lista appartamenti</a>
                 </div>
             </div>
         </div>
