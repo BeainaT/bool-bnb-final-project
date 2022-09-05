@@ -163,7 +163,7 @@
                             <label for="typologies" class="col-md-4 col-form-label text-md-right">Tipologia</label>
                             <div class="col-md-6">
                                 <select class="form-control col-form-label light-radius" id="typologies" name="typologies">
-                                    <option value="Null">Seleziona una tipologia:</option>
+                                    <option value="">Seleziona una tipologia:</option>
                                     @foreach ($typologies as $typology)
                                         <option value="{{$typology->id}}" {{old('typology_id', $house->typology_id) == $typology->id ? 'selected' : ''}}>{{$typology->name}}</option>
                                     @endforeach

@@ -86,8 +86,10 @@ class HouseController extends Controller
         $newHouse->is_visible = isset($data['is_visible']);
 
          //add typology id into house table
-        if(($request->input('typologies')) != Null) {
+        if(($request->input('typologies')) != '') {
             $newHouse->typology_id = $request->input('typologies');
+        } else {
+            $newHouse->typology_id = null;
         }
 
         $newHouse->save();
@@ -179,8 +181,10 @@ class HouseController extends Controller
         $house->is_visible = isset($data['is_visible']);
 
         //update typology id into house table
-        if(($request->input('typologies')) != Null) {
+        if(($request->input('typologies')) != '') {
             $house->typology_id = $request->input('typologies');
+        } else {
+            $house->typology_id = null;
         }
 
         $house->save();
