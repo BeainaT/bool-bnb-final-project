@@ -30,7 +30,7 @@
                                 <a href="{{route('user.houses.edit', $house->id)}}" class="btn icon"><i class="fa-solid fa-pen-to-square"></i></a>
                             </div>
                             <div class="col-3 col-lg-1 py-1">
-                                <a class="btn icon sponsor" href="http://localhost:3000/"><i class="fa-solid fa-star"></i></a>
+                                <a class="btn icon sponsor" href="http://localhost:3000/" target="_blank"><i class="fa-solid fa-star"></i></a>
                             </div>
                             <div class="col-3 col-lg-1 py-1">
                                 <a class="btn icon delete" href="#" data-toggle="modal" data-target="#ModalDelete{{$house->id}}"><i class="fa-solid fa-trash"></i></a>
