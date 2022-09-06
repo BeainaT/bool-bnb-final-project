@@ -2247,7 +2247,7 @@ var render = function render() {
         return _vm.filtersearch();
       }
     }
-  }), _vm._v(" "), _c("input", {
+  }, [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2288,12 +2288,54 @@ var render = function render() {
         _vm.radius = $event.target.value;
       }
     }
+  }), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.radius,
+      expression: "radius"
+    }],
+    attrs: {
+      type: "number",
+      placeholder: "Numero stanza",
+      min: "1"
+    },
+    domProps: {
+      value: _vm.radius
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.radius = $event.target.value;
+      }
+    }
+  }), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.radius,
+      expression: "radius"
+    }],
+    attrs: {
+      type: "number",
+      placeholder: "Posti letto",
+      min: "1"
+    },
+    domProps: {
+      value: _vm.radius
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.radius = $event.target.value;
+      }
+    }
   }), _vm._v(" "), _c("button", {
     staticClass: "btn",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Ricerca per filtri")]), _vm._v(" "), _c("h1", [_vm._v("Lista ricerca")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Ricerca per filtri")])]), _vm._v(" "), _c("h1", [_vm._v("Lista ricerca")]), _vm._v(" "), _c("div", {
     staticClass: "container"
   }, [_c("div", {
     staticClass: "row"
