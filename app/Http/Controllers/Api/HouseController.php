@@ -14,11 +14,19 @@ class HouseController extends Controller
     }
 
     public function show(Request $request) {
-        return $request;
+        $data = $request->all();
+        foreach($data as $item) {
+            foreach($item as $coordinate) {
+                $lon = $coordinate['lon'];
+                $lat = $coordinate['lat'];
+            }
+        }
+        $houses = House::where('latitude', $lat)->where('longitude', $lon)->get();
+        return $houses;                
     }
 
-    public function showThen(Request $request) {
-        $data = $request->all();
-        dd($data);
-    }
+    // public function showThen(Request $request, $coordinate) {
+    //     $coordinate = $request->all();
+    //     return $coordinate;
+    // }
 }
