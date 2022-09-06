@@ -2417,7 +2417,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.main {\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.main {\r\n  text-align: center;\n}\r\n", ""]);
 
 // exports
 
@@ -19257,7 +19257,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/emanueleguidi/Desktop/BoolBnB-Team4/bool-bnb-final-project/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\tania\Desktop\BOOLEAN\bool-bnb-final-project\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })
