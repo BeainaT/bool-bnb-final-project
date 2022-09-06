@@ -1,12 +1,16 @@
 <template>
-  <div class="test">
-    <h1>pagina filtri</h1>
-    <ul>
-      <li>
-        {{house}}
-      </li>
-    </ul>
-  </div>
+  <section class="list_houses">
+    <h1>Ricerca avanzata</h1>
+    <div class="container">
+      <div class="row">
+        <div class="card_house" v-for="item in house" :key="item" col-md-3 col-2>
+          <h2>{{item.name}}</h2>
+          <img :src="item.image" :alt="item.name">
+          Prezzo a notte: {{item.price}},00 euro
+        </div> 
+      </div>
+    </div>  
+  </section>
 </template>
 
 <script>
@@ -20,6 +24,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.list_houses {
+  .card_house {
+    background-color: #bfd7ff;
+    color: #495867;
+    border-radius: 1.25rem;
+    padding: 1.875rem;
 
+    img {
+      width: 6.25rem;
+    }
+  }
+}
 </style>
