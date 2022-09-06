@@ -10,7 +10,7 @@
     <h1>Lista ricerca</h1>
     <div class="container">
       <div class="row">
-        <div v-for="house in houses" :key="house" class="card_house col-md-4 col-2">
+        <div v-for="house in houses" :key="house.id" class="card_house col-md-4 col-2">
           <ul>
             <li>
               <h2>{{house.name}}</h2>
@@ -22,6 +22,8 @@
               {{house.address}}
             </li>
           </ul>
+          <router-link :to="{name: 'house-details', params: {id: house.id}}">Dettaglio</router-link>
+          <!-- <a href="/details">vai al dettaglio</a> -->
         </div>
       </div>
     </div>
