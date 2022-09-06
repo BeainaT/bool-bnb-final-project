@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+        <h1>Benvenuti su 4BnB</h1>
         <SearchForm/>
         <MainCarousel/>
     </div>

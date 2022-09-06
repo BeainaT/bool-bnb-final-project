@@ -2,7 +2,9 @@
   <form @submit.prevent="searchAddress()" method="post">
     <label>Indirizzo</label>
     <input type="text" name="address" id="address" placeholder="Inserisci il luogo in cui vorresti soggiornare" v-model="address">
-    <button type="submit">Cerca</button>
+    <button type="submit">
+        <router-link :to="{name: 'FilterPage', params: {coordinates: ttCoordinates}}"> cerca </router-link>
+    </button>
   </form>
 </template>
 
@@ -20,39 +22,29 @@ export default {
             ttCoordinates: [], // tom tom coordinates for address
         }
     },
-    created() {
-        axios.get('api/houses')
+
+    methods: {
+        searchAddress() {
+            axios.get(`https://api.tomtom.com/search/2/geocode/${this.address}.json?storeResult=false&view=Unified&key=oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N`)
             .then((res) => {
-                this.houses = res.data;
-                this.houses.forEach((elm) =>{
-                    this.coordinates['latitude'] = elm.latitude;
-                    this.coordinates['longitude'] = elm.longitude;
-                    this.filtered.push(this.coordinates);
-                    this.coordinates = {};
+                console.log(res.data.results, 'tom tom')
+                this.tomTomCall = res.data.results;
+                this.tomTomCall.forEach((elm) => {
+                    this.ttCoordinates.push(elm.position);
                 })
-            })
-        },
-        methods: {
-            searchAddress() {
-                axios.get(`https://api.tomtom.com/search/2/geocode/${this.address}.json?storeResult=false&view=Unified&key=oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N`)
+            axios.post('api/houses/show',  {
+                coordinates: this.ttCoordinates })
                 .then((res) => {
-                    console.log(res.data.results, 'tom tom')
-                    this.tomTomCall = res.data.results;
-                    this.tomTomCall.forEach((elm) => {
-                        this.ttCoordinates.push(elm.position);
-                    })
-                axios.post('api/houses/show',  {
-                    coordinates: this.ttCoordinates })
-                    .then((res) => {
-                        console.log(res)
-                        this.address = '';
-                    })
-                    console.log(this.ttCoordinates, 'test')
+                    this.ttCoordinates = res.data;
+                    this.ttCoordinates = $route.params.coordinates
+                    this.address = '';
                 })
-                .catch(e => {
-                    console.log(e)
-                })
-            }, 
+                console.log(this.ttCoordinates, 'test')
+            })
+            .catch(e => {
+                console.log(e)
+            })
+        }, 
     },
 
 
