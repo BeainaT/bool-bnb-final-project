@@ -1,9 +1,9 @@
 <template>
   <section class="list_houses">
-    <form @submit.prevent="filtersearch()" method="POST"></form>
+    <form @submit.prevent="filtersearch()" method="post"></form>
       <input type="text" placeholder="Dove vuoi soggiornare?" v-model="address">
       <input type="number" placeholder="Inserisci il raggio" v-model="radius" min="1">
-      <button type="sumbmit">Ricerca per filtri</button>
+      <button class="btn" type="submit">Ricerca per filtri</button>
     <h1>Lista ricerca</h1>
     <div class="container">
       <div class="row">

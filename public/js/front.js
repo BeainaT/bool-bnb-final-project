@@ -2239,7 +2239,7 @@ var render = function render() {
     staticClass: "list_houses"
   }, [_c("form", {
     attrs: {
-      method: "POST"
+      method: "post"
     },
     on: {
       submit: function submit($event) {
@@ -2289,8 +2289,9 @@ var render = function render() {
       }
     }
   }), _vm._v(" "), _c("button", {
+    staticClass: "btn",
     attrs: {
-      type: "sumbmit"
+      type: "submit"
     }
   }, [_vm._v("Ricerca per filtri")]), _vm._v(" "), _c("h1", [_vm._v("Lista ricerca")]), _vm._v(" "), _c("div", {
     staticClass: "container"
