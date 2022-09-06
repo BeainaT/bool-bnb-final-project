@@ -1,56 +1,50 @@
 <template>
-    <form @submit.prevent="searchAddress()" method="post">
-      <label>Indirizzo</label>
-      <input type="text" name="address" id="address" placeholder="Inserisci il luogo in cui vorresti soggiornare" v-model="address">
-      <button type="submit">
-          <router-link :to="{name: 'FilterPage', params: {coordinates: ttCoordinates}}"> cerca </router-link>
-      </button>
-    </form>
-  </template>
+    <div class="search_bar">
+        <input type="text" name="address" id="address" placeholder="Dove vuoi soggiornare?" v-model="address">
+        <router-link class="btn" :to="{name: 'FilterPage', params: {place: address}}">Ricerca</router-link>
+    </div>
+</template>
   
-  <script>
-      import axios from 'axios';
-  export default {
-      name: 'SearchForm',
-      data() {
-          return {
-              coordinates: {},
-              address: '',
-              houses: [], //all houses values
-              filtered: [], //houses coordinates
-              tomTomCall: [], // tom tom parameters for address
-              ttCoordinates: [], // tom tom coordinates for address
-          }
-      },
-  
-      methods: {
-          searchAddress() {
-              axios.get(`https://api.tomtom.com/search/2/geocode/${this.address}.json?storeResult=false&view=Unified&key=oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N`)
-              .then((res) => {
-                  console.log(res.data.results, 'tom tom')
-                  this.tomTomCall = res.data.results;
-                  this.tomTomCall.forEach((elm) => {
-                      this.ttCoordinates.push(elm.position);
-                  })
-              axios.post('api/houses/show',  {
-                  coordinates: this.ttCoordinates })
-                  .then((res) => {
-                      this.ttCoordinates = res.data;
-                      this.ttCoordinates = $route.params.coordinates
-                      this.address = '';
-                  })
-                  console.log(this.ttCoordinates, 'test')
-              })
-              .catch(e => {
-                  console.log(e)
-              })
-          }, 
-      },
-  
-  
+<script>
+export default {
+    name: 'SearchForm',
+    data() {
+        return {
+        address: '',
+        }
+    },
   }
   </script>
   
-  <style>
-  
+  <style lang="scss">
+  .search_bar {
+    display: flex;
+    gap: .625rem;
+    justify-content: center;
+    align-items: stretch;
+    padding: 1rem;
+
+    input {
+        background-color: #bfd7ff;
+        color: #495867;
+        border: .0625rem solid #788bff;
+        border-radius: .3125rem;
+        padding: .625rem;
+    }
+
+    input::placeholder {
+        color: #495867;
+    }
+
+    .btn {
+        background-color: #bfd7ff;
+        color: #495867;
+        border: .0625rem solid #788bff;
+    }
+
+    .btn:hover {
+        color: #495867;
+        background-color: #f7f7ff;
+    }
+  }
   </style>
