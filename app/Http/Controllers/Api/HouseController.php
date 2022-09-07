@@ -33,8 +33,12 @@ class HouseController extends Controller
         $coordinates = $data['coordinates'];
         $lon = $coordinates['lon'];
         $lat = $coordinates['lat'];
+        // /get long and lat
+
         //get services
-        $services = $data['services'];
+        $servicesId = $data['services'];
+        // /get services
+
         $radius = $data['distance'];
         $rooms = $data['rooms'];
         $beds = $data['beds'];
@@ -42,12 +46,27 @@ class HouseController extends Controller
         //get all houses from database
         $allHouses = House::all();
         
+        
         foreach ($allHouses as $house) {
-            $distance = $this->distance($lat, $lon, $house->latitude, $house->longitude);
-            
-            if ($distance <= $radius && $house->number_rooms >= $rooms && $house->number_beds >= $beds) {
-                $houses[] = $house;
+            if (empty($servicesId)){
+                $distance = $this->distance($lat, $lon, $house->latitude, $house->longitude);
+
+                if ($distance <= $radius && $house->number_rooms >= $rooms && $house->number_beds >= $beds) {
+                    $houses[] = $house;
+                }
+            } else {
+                if (!array_diff($servicesId, $house->services()->service_id)) {
+
+                    $distance = $this->distance($lat, $lon, $house->latitude, $house->longitude);
+    
+                    if ($distance <= $radius && $house->number_rooms >= $rooms && $house->number_beds >= $beds) {
+                        $houses[] = $house;
+                    }
+                }
             }
+            
+
+            
         } 
         return $houses;            
     }
