@@ -2069,7 +2069,8 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         email: '',
         message: ''
-      }
+      },
+      messages: {}
     };
   },
   created: function created() {
@@ -2081,10 +2082,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sendMsg: function sendMsg() {
-      console.log(this.msgData);
-      console.log(this.$route.params.id);
+      var _this2 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/messages/".concat(this.$route.params.id), this.msgData).then(function (res) {
-        console.log(res, 'risposta');
+        _this2.messages = res.data;
+        _this2.msgData.name = '';
+        _this2.msgData.email = '';
+        _this2.msgData.message = '';
       });
     }
   }

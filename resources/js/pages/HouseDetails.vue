@@ -85,7 +85,8 @@ export default {
                 name: '',
                 email: '',
                 message: ''
-            }
+            },
+            messages: {}
         }
     },
     created() {
@@ -96,11 +97,12 @@ export default {
     },
     methods: {
         sendMsg() {
-            console.log(this.msgData)
-            console.log(this.$route.params.id)
             axios.post(`/api/messages/${this.$route.params.id}`, this.msgData)
                 .then((res) => {
-                    console.log(res, 'risposta')
+                    this.messages = res.data;
+                    this.msgData.name = '';
+                    this.msgData.email = '';
+                    this.msgData.message = '';
                 })
         }
     }

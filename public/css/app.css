@@ -21635,6 +21635,22 @@ main .container_house_image .img_house_show {
   width: 100%;
 }
 
+.messages span {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #bfd7ff;
+  font-size: 0.875rem;
+}
+
+.messages img {
+  width: 100%;
+}
+
+.messages .btn.btn_delete {
+  background-color: #fe5f55;
+  color: #f7f7ff;
+}
+
 /*----------------
     FOOTER
 ----------------*/

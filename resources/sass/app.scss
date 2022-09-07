@@ -198,6 +198,25 @@ main {
     }
 }
 
+    // ###### messages ########
+.messages {
+    span {
+        text-transform: uppercase;
+        font-weight: bold;
+        color: $light_blue;
+        font-size: .875rem;
+    }
+    img {
+        width: 100%;
+    }
+    .btn.btn_delete {
+        background-color: $orange_red;
+        color: $ghost_white;
+    }
+}
+
+
+
 /*----------------
     FOOTER
 ----------------*/
