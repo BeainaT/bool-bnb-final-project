@@ -1,21 +1,34 @@
-<form action="/checkout" id="hosted-fields-form" method="post">
-  <label for="card-number">Card Number</label>
-  <div id="card-number"></div>
+<div class="container-braintree">
+  <h1 class="title-braintree">Sponsorizza il tuo appartamento</h1>
+  <hr>
+  <form action="/checkout" id="hosted-fields-form" method="post">
+  <fieldset id="sponsors">
+    <legend>Scegli il tipo di sponsorizzazione</legend>
+    Basic <input type="radio" name="sponsor" value="Basic"/>
+    Medium <input type="radio" name="sponsor" value="Medium"/>
+    Premium <input type="radio" name="sponsor" value="Premium"/>
+  </fieldset>
+  <div id="hide">
+    <label for="card-number">Card Number</label>
+    <div id="card-number"></div>
 
-  <label for="cvv">CVV</label>
-  <div id="cvv"></div>
+    <label for="cvv">CVV</label>
+    <div id="cvv"></div>
 
-  <label for="expiration-date">Expiration Date</label>
-  <div id="expiration-date"></div>
+    <label for="expiration-date">Expiration Date</label>
+    <div id="expiration-date"></div>
+  </div>
+    <div id="checkout-message"></div>
 
-  <div id="checkout-message"></div>
-
-  <input id="payment-button" type="submit" value="Pay" disabled />
-</form>
+    <input id="payment-button" type="submit" value="Pay" disabled />
+  </form>
+</div>
 
 <script>
   var form = document.querySelector('#hosted-fields-form');
   var submit = document.querySelector('input[type="submit"]');
+  let sponsor = document.querySelector('#sponsors')
+  let hide = document.querySelector('#hide')
 
   braintree.client.create({
     // Insert your tokenization key here
@@ -95,11 +108,13 @@
                 console.info('Hosted Fields form has been torn down!');
                 // Remove the 'Submit payment' button
                 form.removeChild(submit);
+                form.removeChild(sponsors);
+                form.removeChild(hide);
               }
             });
 
             if (result.success) {
-              $('#checkout-message').html('<h1>Success</h1><p>Your Hosted Fields form is working! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>');
+              $('#checkout-message').html('<h1>Complimenti</h1><p>Il tuo appartamento è stato sponsorizzato! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>');
             } else {
               $('#checkout-message').html('<h1>Error</h1><p>Check your console.</p>');
             }
@@ -109,3 +124,30 @@
     });
   });
 </script>
+
+<style>
+.container-braintree{
+  width: 40%;
+  margin: auto;
+  background-color: #495867;
+  border-radius: 0px 20px 20px 0;
+  color: #788bff;
+}
+.title-braintree{
+  padding: 10px 5px ;
+}
+
+form{
+  margin: 5px;
+}
+
+#payment-button{
+  width: 100px;
+  border-radius: 20px;
+  border: none;
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #FE5F55;
+  cursor: pointer;
+}
+</style>
