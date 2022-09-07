@@ -2393,7 +2393,7 @@ var render = function render() {
       staticClass: "card_house col-md-4 col-2"
     }, [_c("ul", [_c("li", [_c("h2", [_vm._v(_vm._s(house.name))])]), _vm._v(" "), _c("li", [_c("img", {
       attrs: {
-        src: house.image,
+        src: house.image_path,
         alt: house.name
       }
     })]), _vm._v(" "), _c("li", [_vm._v("\n            " + _vm._s(house.address) + "\n          ")])]), _vm._v(" "), _c("router-link", {

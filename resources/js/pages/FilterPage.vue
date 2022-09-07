@@ -16,7 +16,7 @@
               <h2>{{house.name}}</h2>
             </li>
             <li>
-              <img :src="house.image" :alt="house.name">
+              <img :src="house.image_path" :alt="house.name">
             </li>
             <li>
               {{house.address}}
