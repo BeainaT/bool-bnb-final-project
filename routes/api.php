@@ -22,3 +22,4 @@ Route::get('houses', 'Api\HouseController@index');
 // Route::post('houses', 'Api\HouseController@store');
 Route::post('houses/show', 'Api\HouseController@show');
 // Route::get('houses/show/{coordinates}', 'Api\HouseController@showThen');
+Route::get('services', 'Api\ServiceController@index');
