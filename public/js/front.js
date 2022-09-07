@@ -2057,20 +2057,36 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HouseDetails',
   data: function data() {
     return {
-      house: []
+      house: [],
+      msgData: {
+        name: '',
+        email: '',
+        message: ''
+      }
     };
   },
   created: function created() {
     var _this = this;
 
-    axios.get("/api/houses/details/".concat(this.$route.params.id)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/houses/details/".concat(this.$route.params.id)).then(function (res) {
       _this.house = res.data;
-      console.log(_this.house);
     });
+  },
+  methods: {
+    sendMsg: function sendMsg() {
+      console.log(this.msgData);
+      console.log(this.$route.params.id);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/messages/".concat(this.$route.params.id), this.msgData).then(function (res) {
+        console.log(res, 'risposta');
+      });
+    }
   }
 });
 
@@ -2477,7 +2493,106 @@ var render = function render() {
     staticClass: "row text-center"
   }, [_vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "col-12"
-  }, [_vm._v("\n                          " + _vm._s(_vm.house.square_meters) + "\n                      ")])])])])])])]);
+  }, [_vm._v("\n                          " + _vm._s(_vm.house.square_meters) + "\n                      ")])])])])])]), _vm._v(" "), _c("form", {
+    staticClass: "col-6",
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.sendMsg();
+      }
+    }
+  }, [_c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "exampleFormControlInput1"
+    }
+  }, [_vm._v("Nome")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.msgData.name,
+      expression: "msgData.name"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text",
+      placeholder: "Inserisci il tuo nome",
+      name: "sender_name"
+    },
+    domProps: {
+      value: _vm.msgData.name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.msgData, "name", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "exampleFormControlInput1"
+    }
+  }, [_vm._v("E-mail")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.msgData.email,
+      expression: "msgData.email"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "email",
+      placeholder: "name@example.com",
+      name: "sender_email"
+    },
+    domProps: {
+      value: _vm.msgData.email
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.msgData, "email", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", {
+    attrs: {
+      "for": "exampleFormControlTextarea1"
+    }
+  }, [_vm._v("Inserisci il messaggio")]), _vm._v(" "), _c("textarea", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.msgData.message,
+      expression: "msgData.message"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      rows: "3",
+      name: "text"
+    },
+    domProps: {
+      value: _vm.msgData.message
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.msgData, "message", $event.target.value);
+      }
+    }
+  })]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn_send",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Contatta l'host")])])]);
 };
 
 var staticRenderFns = [function () {
@@ -2667,7 +2782,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".card_house[data-v-76664fea] {\n  background-color: #bfd7ff;\n  color: #495867;\n  border-radius: 0.625rem;\n  padding: 1.25rem;\n}\n.card_house img[data-v-76664fea] {\n  width: 100%;\n}", ""]);
+exports.push([module.i, ".card_house[data-v-76664fea] {\n  background-color: #bfd7ff;\n  color: #495867;\n  border-radius: 0.625rem;\n  padding: 1.25rem;\n}\n.card_house img[data-v-76664fea] {\n  width: 100%;\n}\n.btn_send[data-v-76664fea] {\n  background-color: #fe5f55;\n}", ""]);
 
 // exports
 

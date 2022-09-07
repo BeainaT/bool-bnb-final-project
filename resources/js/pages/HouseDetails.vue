@@ -56,23 +56,53 @@
             </div>
         </div>
     </div>
+    <form class="col-6" @submit.prevent="sendMsg()">
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Nome</label>
+            <input type="text" class="form-control" placeholder="Inserisci il tuo nome" v-model="msgData.name" name="sender_name">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">E-mail</label>
+            <input type="email" class="form-control" placeholder="name@example.com" v-model="msgData.email" name="sender_email">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Inserisci il messaggio</label>
+            <textarea class="form-control" rows="3" v-model="msgData.message" name="text"></textarea>
+        </div>
+        <button class="btn btn_send" type="submit">Contatta l'host</button>
+    </form>
   </div>
 </template>
 
 <script>
+    import axios from 'axios';
 export default {
     name: 'HouseDetails',
     data() {
         return {
             house: [],
+            msgData: {
+                name: '',
+                email: '',
+                message: ''
+            }
         }
     },
     created() {
         axios.get( `/api/houses/details/${this.$route.params.id}`)
         .then(res => {
             this.house = res.data;
-            console.log(this.house)
         })
+    },
+    methods: {
+        sendMsg() {
+            console.log(this.msgData)
+            console.log(this.$route.params.id)
+            axios.post(`/api/messages/${this.$route.params.id}`, this.msgData)
+                .then((res) => {
+                    console.log(res, 'risposta')
+                })
+        }
     }
 }
 </script>
@@ -86,5 +116,8 @@ export default {
         img {
             width: 100%;
         }
+    }
+    .btn_send {
+        background-color: #fe5f55;
     }
 </style>
