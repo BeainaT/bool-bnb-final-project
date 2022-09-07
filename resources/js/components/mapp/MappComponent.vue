@@ -1,12 +1,13 @@
 <template>
     <div class="map">
         <div id="map-div"></div>
-        <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/services/services-web.min.js"></script>
     </div>    
 </template>
 
 <script>
 export default {
+    name: 'MappComponent',
+
     created(){
         const API_KEY = 'Gtj5RKWvcq5LP9DUEi2JeewGgSDNceEA';
         const APPLICATION_NAME = 'My Application';
