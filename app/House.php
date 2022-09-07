@@ -12,7 +12,10 @@ class House extends Model
     protected $appends = ['image_path'];
 
     public function getImagePathAttribute() {
-        return $this->image ? asset("storage/{$this->image}") : null;
+        if(str_starts_with($this->image, 'uploads')) {
+            return asset("storage/{$this->image}");
+        }
+        return asset($this->image);
     }
     // Many to one 
     public function user(){

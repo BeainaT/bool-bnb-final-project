@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 import Home from "./pages/Home.vue";
 import FilterPage from "./pages/FilterPage.vue";
 import Page404 from "./pages/Page404.vue";
+import HouseDetails from './pages/HouseDetails.vue';
 
 const router = new VueRouter({
     mode: "history",
@@ -19,6 +20,11 @@ const router = new VueRouter({
             path: "/search",
             name: "FilterPage",
             component: FilterPage,
+        },
+        {
+            path: "/details/:id",
+            name: "house-details",
+            component: HouseDetails,
         },
         {
             path: "/*",

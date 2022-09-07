@@ -47,4 +47,9 @@ class HouseController extends Controller
         
         return $houses;            
     }
+
+    public function houseDetails($id) {
+        $house = House::where('id', $id)->first();
+        return $house;
+    }
 }
