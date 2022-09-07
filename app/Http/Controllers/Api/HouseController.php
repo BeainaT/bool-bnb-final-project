@@ -24,27 +24,50 @@ class HouseController extends Controller
     }
 
     public function show(Request $request) {
+        //variable for return houses
         $houses = [];
-        $radius = 20;
 
-        //get first data request
+        //get data pass through axios.post
         $data = $request->all();
-        foreach($data as $coordinate) {
-            $lon = $coordinate['lon'];
-            $lat = $coordinate['lat'];
-        }
-        
+        //get long and lat
+        $coordinates = $data['coordinates'];
+        $lon = $coordinates['lon'];
+        $lat = $coordinates['lat'];
+        // /get long and lat
+
+        //get services
+        $servicesId = $data['services'];
+        // /get services
+
+        $radius = $data['distance'];
+        $rooms = $data['rooms'];
+        $beds = $data['beds'];
+
+        //get all houses from database
         $allHouses = House::all();
-
-        foreach ($allHouses as $house) {
-
-            $distance = $this->distance($lat, $lon, $house->latitude, $house->longitude);
-            
-            if ($distance <= $radius) {
-                $houses[] = $house;
-            }
-        }
         
+        
+        foreach ($allHouses as $house) {
+            if (empty($servicesId)){
+                $distance = $this->distance($lat, $lon, $house->latitude, $house->longitude);
+
+                if ($distance <= $radius && $house->number_rooms >= $rooms && $house->number_beds >= $beds) {
+                    $houses[] = $house;
+                }
+            } else {
+                if (!array_diff($servicesId, $house->services()->service_id)) {
+
+                    $distance = $this->distance($lat, $lon, $house->latitude, $house->longitude);
+    
+                    if ($distance <= $radius && $house->number_rooms >= $rooms && $house->number_beds >= $beds) {
+                        $houses[] = $house;
+                    }
+                }
+            }
+            
+
+            
+        } 
         return $houses;            
     }
 

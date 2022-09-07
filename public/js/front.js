@@ -1971,32 +1971,48 @@ __webpack_require__.r(__webpack_exports__);
   name: 'FilterPage',
   data: function data() {
     return {
-      coordinates: [],
+      servicesAvailable: '',
       address: '',
-      radius: '',
+      //address filtered
+      radius: '20',
+      //radius filtered
+      number_rooms: '',
+      //number of rooms filtered
+      number_beds: '',
+      //number of beds filtered
+      servicesFilter: [],
+      //all services choose by user
       houses: [],
-      //all houses values
-      filtered: [],
-      //houses coordinates
-      tomTomCall: [],
-      // tom tom parameters for address
-      position: [] // tom tom coordinates for address
+      //all houses from controller api
+      position: [] // tom tom coordinates for input address address
 
     };
   },
   created: function created() {
     var _this = this;
 
+    //api to obtain services and populate checkbox in form
+    axios.get('api/services').then(function (res) {
+      _this.servicesAvailable = res.data;
+      console.log(res.data, 'services');
+    })["catch"](function (e) {
+      console.log(e);
+    }); //api to get user's input coordinates
+
     this.address = this.$route.params.place;
     axios.get("https://api.tomtom.com/search/2/geocode/".concat(this.address, ".json?storeResult=false&view=Unified&key=oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N")).then(function (res) {
-      _this.tomTomCall = res.data.results[0];
-      _this.position = _this.tomTomCall.position;
-      console.log(_this.position, 'coordinate');
+      _this.position = res.data.results[0];
+      _this.position = _this.position.position; //api to get houses filtered
+
       axios.post('api/houses/show', {
-        coordinates: _this.position
+        coordinates: _this.position,
+        distance: _this.radius,
+        rooms: _this.number_rooms,
+        beds: _this.number_beds,
+        services: _this.servicesFilter
       }).then(function (res) {
         _this.houses = res.data;
-        console.log(_this.houses, 'risultato finale');
+        console.log(_this.houses, 'filtered houses');
       })["catch"](function (e) {
         console.log(e);
       });
@@ -2007,14 +2023,18 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get("https://api.tomtom.com/search/2/geocode/".concat(this.address, ".json?storeResult=false&view=Unified&key=oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N")).then(function (res) {
-        _this2.tomTomCall = res.data.results[0];
-        _this2.position = _this2.tomTomCall.position;
-        console.log(_this2.position, 'coordinate');
+        _this2.position = res.data.results[0];
+        _this2.position = _this2.position.position;
         axios.post('api/houses/show', {
-          coordinates: _this2.position
+          coordinates: _this2.position,
+          distance: _this2.radius,
+          rooms: _this2.number_rooms,
+          beds: _this2.number_beds,
+          services: _this2.servicesFilter
         }).then(function (res) {
+          console.log(res.data);
           _this2.houses = res.data;
-          console.log(_this2.houses, 'risultato finale');
+          console.log(res.data);
         })["catch"](function (e) {
           console.log(e);
         });
@@ -2295,16 +2315,23 @@ var render = function render() {
         return _vm.filtersearch();
       }
     }
-  }, [_c("input", {
+  }, [_c("div", {
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col"
+  }, [_c("p", [_vm._v("Località")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: _vm.address,
       expression: "address"
     }],
+    staticClass: "input",
     attrs: {
       type: "text",
-      placeholder: "Dove vuoi soggiornare?"
+      placeholder: "Dove"
     },
     domProps: {
       value: _vm.address
@@ -2315,16 +2342,19 @@ var render = function render() {
         _vm.address = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("input", {
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-2"
+  }, [_c("p", [_vm._v("Raggio")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: _vm.radius,
       expression: "radius"
     }],
+    staticClass: "input",
     attrs: {
       type: "number",
-      placeholder: "Inserisci il raggio",
+      placeholder: "Distanza",
       min: "1"
     },
     domProps: {
@@ -2336,55 +2366,107 @@ var render = function render() {
         _vm.radius = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("input", {
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-2"
+  }, [_c("p", [_vm._v("Stanze")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.radius,
-      expression: "radius"
+      value: _vm.number_rooms,
+      expression: "number_rooms"
     }],
+    staticClass: "input",
     attrs: {
       type: "number",
-      placeholder: "Numero stanza",
+      placeholder: "Numero",
       min: "1"
     },
     domProps: {
-      value: _vm.radius
+      value: _vm.number_rooms
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.radius = $event.target.value;
+        _vm.number_rooms = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("input", {
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-2"
+  }, [_c("p", [_vm._v("Letti")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.radius,
-      expression: "radius"
+      value: _vm.number_beds,
+      expression: "number_beds"
     }],
+    staticClass: "input",
     attrs: {
       type: "number",
-      placeholder: "Posti letto",
+      placeholder: "Numero",
       min: "1"
     },
     domProps: {
-      value: _vm.radius
+      value: _vm.number_beds
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.radius = $event.target.value;
+        _vm.number_beds = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("button", {
-    staticClass: "btn",
+  })]), _vm._v(" "), _c("button", {
+    staticClass: "col-md-1 btn submit",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("Ricerca per filtri")])]), _vm._v(" "), _c("h1", [_vm._v("Lista ricerca")]), _vm._v(" "), _c("div", {
-    staticClass: "container"
+  }, [_vm._v("Ricerca")])]), _vm._v(" "), _c("div", {
+    staticClass: "row justify-content-center"
+  }, _vm._l(_vm.servicesAvailable, function (service) {
+    return _c("div", {
+      key: service
+    }, [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _vm.servicesFilter,
+        expression: "servicesFilter"
+      }],
+      attrs: {
+        type: "checkbox",
+        id: service.name,
+        name: "service"
+      },
+      domProps: {
+        value: service.id,
+        checked: Array.isArray(_vm.servicesFilter) ? _vm._i(_vm.servicesFilter, service.id) > -1 : _vm.servicesFilter
+      },
+      on: {
+        change: function change($event) {
+          var $$a = _vm.servicesFilter,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false;
+
+          if (Array.isArray($$a)) {
+            var $$v = service.id,
+                $$i = _vm._i($$a, $$v);
+
+            if ($$el.checked) {
+              $$i < 0 && (_vm.servicesFilter = $$a.concat([$$v]));
+            } else {
+              $$i > -1 && (_vm.servicesFilter = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+            }
+          } else {
+            _vm.servicesFilter = $$c;
+          }
+        }
+      }
+    }), _vm._v(" "), _c("label", {
+      attrs: {
+        "for": service.name
+      }
+    }, [_vm._v(_vm._s(service.name))])]);
+  }), 0)])]), _vm._v(" "), _c("div", {
+    staticClass: "container house_list_filter"
   }, [_c("div", {
     staticClass: "row"
   }, _vm._l(_vm.houses, function (house) {
@@ -2432,7 +2514,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "home"
-  }, [_c("h1", [_vm._v("Benvenuti su 4BnB")]), _vm._v(" "), _c("SearchForm"), _vm._v(" "), _c("MainCarousel")], 1);
+  }, [_c("SearchForm"), _vm._v(" "), _c("MainCarousel")], 1);
 };
 
 var staticRenderFns = [];
@@ -2729,7 +2811,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".search_bar {\n  display: flex;\n  gap: 0.625rem;\n  justify-content: center;\n  align-items: stretch;\n  padding: 1rem;\n}\n.search_bar input {\n  background-color: #bfd7ff;\n  color: #495867;\n  border: 0.0625rem solid #788bff;\n  border-radius: 0.3125rem;\n  padding: 0.625rem;\n}\n.search_bar input::-moz-placeholder {\n  color: #495867;\n}\n.search_bar input::placeholder {\n  color: #495867;\n}\n.search_bar .btn {\n  background-color: #bfd7ff;\n  color: #495867;\n  border: 0.0625rem solid #788bff;\n}\n.search_bar .btn:hover {\n  color: #495867;\n  background-color: #f7f7ff;\n}", ""]);
+exports.push([module.i, ".search_bar {\n  display: flex;\n  gap: 0.625rem;\n  justify-content: center;\n  align-items: stretch;\n  padding-bottom: 0.5rem;\n}\n.search_bar input {\n  background-color: #bfd7ff;\n  color: #495867;\n  border: 0.0625rem solid #bfd7ff;\n  border-radius: 0.3125rem;\n  padding: 0.625rem;\n}\n.search_bar input::-moz-placeholder {\n  color: #f7f7ff;\n}\n.search_bar input::placeholder {\n  color: #f7f7ff;\n}\n.search_bar .btn {\n  background-color: #9bb1ff;\n  color: #f7f7ff;\n  border: 0.0625rem solid #9bb1ff;\n  display: flex;\n  align-items: center;\n}\n.search_bar .btn:hover {\n  color: #495867;\n  background-color: #f7f7ff;\n  border: 0.0625rem solid #f7f7ff;\n}", ""]);
 
 // exports
 
@@ -2748,7 +2830,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "section.list_houses input {\n  background-color: #bfd7ff;\n  color: #495867;\n  border: 0.0625rem solid #788bff;\n  border-radius: 0.3125rem;\n  padding: 0.625rem;\n}\nsection.list_houses input::-moz-placeholder {\n  color: #495867;\n}\nsection.list_houses input::placeholder {\n  color: #495867;\n}\nsection.list_houses .card_house {\n  background-color: #bfd7ff;\n  color: #495867;\n  border-radius: 0.625rem;\n  padding: 1.25rem;\n}\nsection.list_houses .card_house ul {\n  list-style: none;\n}\nsection.list_houses .card_house img {\n  width: 100%;\n}", ""]);
+exports.push([module.i, "section.list_houses form .row {\n  gap: 0.625rem;\n  align-items: end;\n}\nsection.list_houses form .input {\n  background-color: #bfd7ff;\n  color: #495867;\n  border: 0.0625rem solid #bfd7ff;\n  border-radius: 0.3125rem;\n  padding: 0.625rem;\n  width: 100%;\n}\nsection.list_houses form .input::-moz-placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .input::placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .btn {\n  background-color: #9bb1ff;\n  color: #f7f7ff;\n  border: 0.0625rem solid #9bb1ff;\n  display: flex;\n  align-items: center;\n}\nsection.list_houses form .btn.submit {\n  align-self: stretch;\n  display: flex;\n  justify-content: center;\n}\nsection.list_houses form .btn:hover {\n  color: #495867;\n  background-color: #f7f7ff;\n  border: 0.0625rem solid #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle {\n  color: #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle .container .row {\n  justify-content: center;\n  align-items: center;\n}\nsection.list_houses .house_list_filter {\n  padding: 1.25rem;\n}\nsection.list_houses .house_list_filter .card_house {\n  background-color: #bfd7ff;\n  color: #495867;\n  border-radius: 0.625rem;\n  padding: 1.25rem;\n}\nsection.list_houses .house_list_filter .card_house ul {\n  list-style: none;\n}\nsection.list_houses .house_list_filter .card_house img {\n  width: 100%;\n}", ""]);
 
 // exports
 

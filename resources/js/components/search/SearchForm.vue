@@ -22,29 +22,33 @@ export default {
     gap: .625rem;
     justify-content: center;
     align-items: stretch;
-    padding: 1rem;
+    padding-bottom: .5rem;
 
     input {
         background-color: #bfd7ff;
         color: #495867;
-        border: .0625rem solid #788bff;
+        border: .0625rem solid #bfd7ff;
         border-radius: .3125rem;
         padding: .625rem;
     }
 
     input::placeholder {
-        color: #495867;
+        color: #f7f7ff;
     }
 
     .btn {
-        background-color: #bfd7ff;
-        color: #495867;
-        border: .0625rem solid #788bff;
+        background-color: #9bb1ff;
+        color: #f7f7ff;
+        border: .0625rem solid #9bb1ff;
+        display: flex;
+        align-items: center;
     }
 
     .btn:hover {
         color: #495867;
         background-color: #f7f7ff;
+        border: .0625rem solid #f7f7ff;
+
     }
   }
   </style>

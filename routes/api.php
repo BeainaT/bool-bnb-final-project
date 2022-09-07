@@ -25,3 +25,5 @@ Route::post('houses/show', 'Api\HouseController@show');
 Route::get('houses/details/{id}', 'Api\HouseController@houseDetails');
 
 Route::post('messages/{house_id}', 'Api\MessageController@store');
+
+Route::get('services', 'Api\ServiceController@index');
