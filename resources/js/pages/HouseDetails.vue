@@ -4,10 +4,10 @@
         <h2>Pagina dettaglio casa {{house.name}}</h2>
     </div>
     <div class="row card_house justify-content-between">
-        <div class="col-4">
+        <div class="col-lg-4 col-md-6 col-sm-10">
             <img :src="house.image_path" :alt="house.name">
         </div>
-        <div class="col-6 text-left">
+        <div class="col-lg-6 col-md-6 col-sm-12 text-left">
             <address><strong>Indirizzo: </strong>{{house.address}}</address>
             <p>{{house.description}}</p>
             <div class="row my-3">
@@ -54,10 +54,11 @@
                     </div>
                 </div>
             </div>
+            <div><strong>Prezzo: </strong>{{house.price}} €/notte</div>
         </div>
     </div>
-    <div class="container_bottom d-flex py-2 justify-content-around">
-        <form class="col-6" @submit.prevent="sendMsg()">
+    <div class="container_bottom d-flex flex-wrap py-2 justify-content-around">
+        <form class="col-lg-6 col-sm-8 mb-2" @submit.prevent="sendMsg()">
             <div class="form-group">
                 <label for="exampleFormControlInput1">Nome</label>
                 <input type="text" class="form-control" placeholder="Inserisci il tuo nome" v-model="msgData.name" name="sender_name">
@@ -73,7 +74,7 @@
             <button class="btn btn_send" type="submit">Contatta l'host</button>
             <div class="text-success py-2" v-if="msgSent">Il messaggio è stato inviato all'host</div>
         </form>
-        <div id="map-div" style="width:100%; height:400px; overflow: hidden;">
+        <div id="map-div" class="col-lg-6 col-sm-10" style="width:100%; height:400px; overflow: hidden;">
             <div id="map" style="width:100%; height:400px;"></div>
         </div>
     </div>
