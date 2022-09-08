@@ -52,14 +52,13 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn_delete my-2">Elimina</button>
-                    </form>
-                        
+                    </form>                        
                         <hr>     
                     @endforeach
                 @else                     
                     <p>Non ci sono messaggi</p>
                 @endif
-                <div class="pb-2">
+                <div class="py-2">
                     <a class="btn col-5" href="{{route('user.dashboard')}}">Torna alla Dashboard</a>
                 </div>
             </div>

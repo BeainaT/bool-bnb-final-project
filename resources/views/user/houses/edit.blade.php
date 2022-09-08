@@ -85,9 +85,8 @@
                         {{-- image --}}
                         <div class="form-group row">
                             <label for="img" class="col-md-4 col-form-label text-md-right">Immagine</label>
-                            {{-- {{dd($house->image)}} --}}
                             <div class="col-md-6">
-                                <img style="width:100px;" src="{{str_starts_with($house->image, 'i') ? asset($house->image) : asset('storage/'.$house->image)}}" alt="">
+                                <img style="width:100px;" src="{{$house->image_path}}" alt="">
                                 <input id="img" type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image')}}" autocomplete="image" autofocus>
                                 @error('image')
                                     <span class="invalid-feedback" role="alert">
