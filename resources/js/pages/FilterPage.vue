@@ -107,26 +107,26 @@ export default {
     filtersearch() {
       if(!this.address == '') {
         axios.get(`https://api.tomtom.com/search/2/geocode/${this.address}.json?storeResult=false&view=Unified&key=oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N`)
-      .then((res) => {
-        this.position = res.data.results[0];
-        this.position = this.position.position
-
-        axios.post('api/houses/show',  {
-          coordinates: this.position, 
-          distance: this.radius, 
-          rooms: this.number_rooms, 
-          beds: this.number_beds ,
-          services: this.servicesFilter
-        })
         .then((res) => {
-          console.log(res.data, 'risposta finale');
-          this.houses = res.data;
-          console.log(this.houses, 'alberghi');
+          this.position = res.data.results[0];
+          this.position = this.position.position
+
+          axios.post('api/houses/show',  {
+            coordinates: this.position, 
+            distance: this.radius, 
+            rooms: this.number_rooms, 
+            beds: this.number_beds ,
+            services: this.servicesFilter
+          })
+          .then((res) => {
+            console.log(res.data, 'risposta finale');
+            this.houses = res.data;
+            console.log(this.houses, 'alberghi');
+          })
+          .catch(e => {
+              console.log(e)
+          })
         })
-        .catch(e => {
-            console.log(e)
-        })
-      })
       } else {
         this.houses = false;
       }
