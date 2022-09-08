@@ -24,6 +24,7 @@ Route::middleware('auth')
     Route::resource('houses', 'HouseController');
     Route::get('messages', 'MessageController@index')->name('messages.index');
     Route::delete('messages/{message}', 'MessageController@destroy')->name('messages.destroy');
+    Route::get('promotes', 'PromoteController@index')->name('promotes.index');
 });
 
 
