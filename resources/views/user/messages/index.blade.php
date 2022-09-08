@@ -51,8 +51,10 @@
                     <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn_delete my-2">Elimina</button>
+                        <a class="btn icon delete" href="#" data-toggle="modal" data-target="#ModalDelete{{$message->id}}"><i class="fa-solid fa-trash"></i></a>
+                        @include('user.houses.modal.msg')  
                     </form>                        
+                    
                         <hr>     
                     @endforeach
                 @else                     
