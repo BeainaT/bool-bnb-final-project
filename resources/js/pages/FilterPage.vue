@@ -26,7 +26,7 @@
           <!-- /button submit  -->
         </div>
         <div class="row justify-content-center">
-            <div v-for="service in servicesAvailable" :key="service">
+            <div v-for="service in servicesAvailable" :key="service.id">
                 <input type="checkbox" :id="service.name" :value="service.id" name="service" v-model="servicesFilter">
                 <label :for="service.name">{{service.name}}</label>
             </div>
