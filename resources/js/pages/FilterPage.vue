@@ -9,15 +9,15 @@
             <input class="input" type="text" placeholder="Dove" v-model="address">
           </div>
           <div class="col-md-2">
-            <p>Raggio</p>
+            <p>Distanza (km)</p>
             <input class="input" type="number" placeholder="Distanza" v-model="radius" min="1">
           </div>
           <div class="col-md-2"> 
-            <p>Stanze</p>
+            <p>Stanze (n.)</p>
             <input class="input" type="number" placeholder="Numero" v-model="number_rooms" min="1">
           </div>
           <div class="col-md-2">
-            <p>Letti</p>
+            <p>Persone (n.)</p>
             <input class="input" type="number" placeholder="Numero" v-model="number_beds" min="1">
           </div>
           <!-- /input type  -->
@@ -32,12 +32,11 @@
             </div>
         </div>
           <!-- /dropdown menu  -->
-        </div>
       </div>
     </form>
-    <div class="container house_list_filter">
+    <div class="container house_list_filter text-center">
       <div class="row">
-        <div v-for="house in houses" :key="house.id" class="card_house col-md-4 col-2">
+        <div v-for="house in houses" :key="house.id" class="col-lg-4 col-md-6 col-sm-12 card_house ">
           <ul>
             <li>
               <h2>{{house.name}}</h2>
@@ -139,7 +138,6 @@ section.list_houses {
   form {
     .row {
       gap: .625rem;
-      align-items: end;
     }
     .input {
       background-color: #bfd7ff;
@@ -163,8 +161,6 @@ section.list_houses {
     }
 
     .btn.submit {
-      align-self: stretch;
-      display: flex;
       justify-content: center;
     }
 
@@ -191,8 +187,9 @@ section.list_houses {
     .card_house {
       background-color: #bfd7ff;
       color: #495867;
-      border-radius: .625rem;
+      border-radius: 1.25rem;
       padding: 1.25rem;
+      border: .3125rem solid white;
 
       ul {
         list-style: none;

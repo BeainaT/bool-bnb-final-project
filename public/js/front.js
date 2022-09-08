@@ -2344,7 +2344,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "col-md-2"
-  }, [_c("p", [_vm._v("Raggio")]), _vm._v(" "), _c("input", {
+  }, [_c("p", [_vm._v("Distanza (km)")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2368,7 +2368,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "col-md-2"
-  }, [_c("p", [_vm._v("Stanze")]), _vm._v(" "), _c("input", {
+  }, [_c("p", [_vm._v("Stanze (n.)")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2392,7 +2392,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("div", {
     staticClass: "col-md-2"
-  }, [_c("p", [_vm._v("Letti")]), _vm._v(" "), _c("input", {
+  }, [_c("p", [_vm._v("Persone (n.)")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2466,13 +2466,13 @@ var render = function render() {
       }
     }, [_vm._v(_vm._s(service.name))])]);
   }), 0)])]), _vm._v(" "), _c("div", {
-    staticClass: "container house_list_filter"
+    staticClass: "container house_list_filter text-center"
   }, [_c("div", {
     staticClass: "row"
   }, _vm._l(_vm.houses, function (house) {
     return _c("div", {
       key: house.id,
-      staticClass: "card_house col-md-4 col-2"
+      staticClass: "col-lg-4 col-md-6 col-sm-12 card_house"
     }, [_c("ul", [_c("li", [_c("h2", [_vm._v(_vm._s(house.name))])]), _vm._v(" "), _c("li", [_c("img", {
       attrs: {
         src: house.image_path,
@@ -2830,7 +2830,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "section.list_houses form .row {\n  gap: 0.625rem;\n  align-items: end;\n}\nsection.list_houses form .input {\n  background-color: #bfd7ff;\n  color: #495867;\n  border: 0.0625rem solid #bfd7ff;\n  border-radius: 0.3125rem;\n  padding: 0.625rem;\n  width: 100%;\n}\nsection.list_houses form .input::-moz-placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .input::placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .btn {\n  background-color: #9bb1ff;\n  color: #f7f7ff;\n  border: 0.0625rem solid #9bb1ff;\n  display: flex;\n  align-items: center;\n}\nsection.list_houses form .btn.submit {\n  align-self: stretch;\n  display: flex;\n  justify-content: center;\n}\nsection.list_houses form .btn:hover {\n  color: #495867;\n  background-color: #f7f7ff;\n  border: 0.0625rem solid #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle {\n  color: #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle .container .row {\n  justify-content: center;\n  align-items: center;\n}\nsection.list_houses .house_list_filter {\n  padding: 1.25rem;\n}\nsection.list_houses .house_list_filter .card_house {\n  background-color: #bfd7ff;\n  color: #495867;\n  border-radius: 0.625rem;\n  padding: 1.25rem;\n}\nsection.list_houses .house_list_filter .card_house ul {\n  list-style: none;\n}\nsection.list_houses .house_list_filter .card_house img {\n  width: 100%;\n}", ""]);
+exports.push([module.i, "section.list_houses form .row {\n  gap: 0.625rem;\n}\nsection.list_houses form .input {\n  background-color: #bfd7ff;\n  color: #495867;\n  border: 0.0625rem solid #bfd7ff;\n  border-radius: 0.3125rem;\n  padding: 0.625rem;\n  width: 100%;\n}\nsection.list_houses form .input::-moz-placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .input::placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .btn {\n  background-color: #9bb1ff;\n  color: #f7f7ff;\n  border: 0.0625rem solid #9bb1ff;\n  display: flex;\n  align-items: center;\n}\nsection.list_houses form .btn.submit {\n  justify-content: center;\n}\nsection.list_houses form .btn:hover {\n  color: #495867;\n  background-color: #f7f7ff;\n  border: 0.0625rem solid #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle {\n  color: #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle .container .row {\n  justify-content: center;\n  align-items: center;\n}\nsection.list_houses .house_list_filter {\n  padding: 1.25rem;\n}\nsection.list_houses .house_list_filter .card_house {\n  background-color: #bfd7ff;\n  color: #495867;\n  border-radius: 1.25rem;\n  padding: 1.25rem;\n  border: 0.3125rem solid white;\n}\nsection.list_houses .house_list_filter .card_house ul {\n  list-style: none;\n}\nsection.list_houses .house_list_filter .card_house img {\n  width: 100%;\n}", ""]);
 
 // exports
 
