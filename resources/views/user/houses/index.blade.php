@@ -5,43 +5,43 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header mb-2">
+                <div class="card-header">
                     <h2>I tuoi appartamenti</h2>
                 </div>
                 <div class="card-body">
-                    <div class="col-12 pb-1 text-center">
-                        <a class="btn icon" href="{{route('user.messages.index')}}"><i class="fa-solid fa-message"></i></a>
-                    </div>
-                    <hr>
-                    <div class="container py-1">
+                    <div class="container">
                         @foreach ($houses as $house)
-                        <div class="row align-items-center justify-content-center my-1">
-                            <div class="col-3 py-1">
-                                <img class="img_list_houses" src="{{str_starts_with($house->image, 'i') ? asset($house->image) : asset('storage/'.$house->image)}}" alt="">
-                            </div>
-                            <div class="col-9 col-lg-4 py-1">
-                                <div class="house_name">
-                                    <h5>{{$house->name}}</h5>
+                            <div class="row align-items-center justify-content-center my-1">
+                                <div class="col-3 py-1">
+                                    <img class="img_list_houses" src="{{$house->image_path}}" alt="">
                                 </div>
-                                <div class="house_address">
-                                    {{$house->address}}
+                                <div class="col-9 col-lg-4 py-1">
+                                    <div class="house_name">
+                                        <h5>{{$house->name}}</h5>
+                                    </div>
+                                    <div class="house_address">
+                                        {{$house->address}}
+                                    </div>
+                                </div>
+                                <div class="col-3 col-lg-1 py-1">
+                                    <a href="{{route('user.houses.show', $house->id)}}" class="btn icon"><i class="fa-solid fa-eye"></i></a>
+                                </div>
+                                <div class="col-3 col-lg-1 py-1">
+                                    <a href="{{route('user.houses.edit', $house->id)}}" class="btn icon"><i class="fa-solid fa-pen-to-square"></i></a>
+                                </div>
+                                <div class="col-3 col-lg-1 py-1">
+                                    <a class="btn icon sponsor" href="{{route('user.promotes.index', $house->id)}}"><i class="fa-solid fa-star"></i></a>
+                                </div>
+                                <div class="col-3 col-lg-1 py-1">
+                                    <a class="btn icon" href="{{route('user.messages.index', $house->id)}}"><i class="fa-solid fa-message"></i></a>
+                                </div>
+                                    
+                                <div class="col-3 col-lg-1 py-1">
+                                    <a class="btn icon delete" href="#" data-toggle="modal" data-target="#ModalDelete{{$house->id}}"><i class="fa-solid fa-trash"></i></a>
+                                    @include('user.houses.modal.delete')    
                                 </div>
                             </div>
-                            <div class="col-3 col-lg-1 py-1">
-                                <a href="{{route('user.houses.show', $house->id)}}" class="btn icon"><i class="fa-solid fa-eye"></i></a>
-                            </div>
-                            <div class="col-3 col-lg-1 py-1">
-                                <a href="{{route('user.houses.edit', $house->id)}}" class="btn icon"><i class="fa-solid fa-pen-to-square"></i></a>
-                            </div>
-                            <div class="col-3 col-lg-1 py-1">
-                                <a class="btn icon sponsor" href="{{route('user.promotes.index', $house->id)}}"><i class="fa-solid fa-star"></i></a>
-                            </div>
-                            <div class="col-3 col-lg-1 py-1">
-                                <a class="btn icon delete" href="#" data-toggle="modal" data-target="#ModalDelete{{$house->id}}"><i class="fa-solid fa-trash"></i></a>
-                                @include('user.houses.modal.delete')    
-                            </div>
-                        </div>
-                        <hr>
+                            <hr>
                         @endforeach
                     </div>
                     <div class="container">
