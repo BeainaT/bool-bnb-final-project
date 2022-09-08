@@ -13,7 +13,7 @@ class MessageController extends Controller
 
         $messages = Message::whereHas('house', function($q) use($user_id) {
             $q->where('user_id', $user_id);
-        })->get();
+        })->orderBy('id', 'DESC')->get();
 
         return view('user.messages.index', compact('messages'));
     }

@@ -42,9 +42,12 @@
                                 <div class="col-md-7">
                                     <h6>{{$message->sender_email}}</h6>
                                 </div>
+                                <div class="col-md-12 py-2">
+                                    <small>Messaggio del: {{date('d-m-Y'), strtotime($message->created_at)}}</small>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="col-lg-3 col-md-6 col-sm-6 pb-2">
                             <img src="{{asset($message->house->image_path)}}" alt="">
                         </div>
                     </div>

@@ -9,6 +9,10 @@
                     <h2>I tuoi appartamenti</h2>
                 </div>
                 <div class="card-body">
+                    <div class="col-12 pb-1 text-center">
+                        <a class="btn icon" href="{{route('user.messages.index')}}"><i class="fa-solid fa-message"></i></a>
+                    </div>
+                    <hr>
                     <div class="container py-1">
                         @foreach ($houses as $house)
                         <div class="row align-items-center justify-content-center my-1">
@@ -39,9 +43,6 @@
                         </div>
                         <hr>
                         @endforeach
-                        <div class="col-12 py-1 text-center">
-                            <a class="btn icon" href="{{route('user.messages.index')}}"><i class="fa-solid fa-message"></i></a>
-                        </div>
                     </div>
                     <div class="container">
                         <div class="row justify-content-between">
