@@ -83,6 +83,7 @@
 <script>
     import axios from 'axios';
     import tt from '@tomtom-international/web-sdk-maps';
+    import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default {
     name: 'HouseDetails',
@@ -124,9 +125,9 @@ export default {
             center: [house.longitude, house.latitude],
             zoom: 15,
         });
-        // new tt.Marker()
-        // .setLngLat([house.longitude, house.latitude])
-        // .addTo(map);
+        new tt.Marker()
+        .setLngLat([house.longitude, house.latitude])
+        .addTo(map);
         },
     }
 }
