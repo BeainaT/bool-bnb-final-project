@@ -1976,9 +1976,9 @@ __webpack_require__.r(__webpack_exports__);
       //address filtered
       radius: '20',
       //radius filtered
-      number_rooms: '',
+      number_rooms: '0',
       //number of rooms filtered
-      number_beds: '',
+      number_beds: '0',
       //number of beds filtered
       servicesFilter: [],
       //all services choose by user
@@ -2022,23 +2022,27 @@ __webpack_require__.r(__webpack_exports__);
     filtersearch: function filtersearch() {
       var _this2 = this;
 
-      axios.get("https://api.tomtom.com/search/2/geocode/".concat(this.address, ".json?storeResult=false&view=Unified&key=oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N")).then(function (res) {
-        _this2.position = res.data.results[0];
-        _this2.position = _this2.position.position;
-        axios.post('api/houses/show', {
-          coordinates: _this2.position,
-          distance: _this2.radius,
-          rooms: _this2.number_rooms,
-          beds: _this2.number_beds,
-          services: _this2.servicesFilter
-        }).then(function (res) {
-          console.log(res.data);
-          _this2.houses = res.data;
-          console.log(res.data);
-        })["catch"](function (e) {
-          console.log(e);
+      if (!this.address == '') {
+        axios.get("https://api.tomtom.com/search/2/geocode/".concat(this.address, ".json?storeResult=false&view=Unified&key=oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N")).then(function (res) {
+          _this2.position = res.data.results[0];
+          _this2.position = _this2.position.position;
+          axios.post('api/houses/show', {
+            coordinates: _this2.position,
+            distance: _this2.radius,
+            rooms: _this2.number_rooms,
+            beds: _this2.number_beds,
+            services: _this2.servicesFilter
+          }).then(function (res) {
+            console.log(res.data, 'risposta finale');
+            _this2.houses = res.data;
+            console.log(_this2.houses, 'alberghi');
+          })["catch"](function (e) {
+            console.log(e);
+          });
         });
-      });
+      } else {
+        this.houses = false;
+      }
     }
   }
 });
@@ -2379,7 +2383,7 @@ var render = function render() {
     attrs: {
       type: "number",
       placeholder: "Numero",
-      min: "1"
+      min: "0"
     },
     domProps: {
       value: _vm.number_rooms
@@ -2403,7 +2407,7 @@ var render = function render() {
     attrs: {
       type: "number",
       placeholder: "Numero",
-      min: "1"
+      min: "0"
     },
     domProps: {
       value: _vm.number_beds
@@ -2466,19 +2470,15 @@ var render = function render() {
       }
     }, [_vm._v(_vm._s(service.name))])]);
   }), 0)])]), _vm._v(" "), _c("div", {
-    staticClass: "container house_list_filter text-center"
-  }, [_c("div", {
+    staticClass: "container house_list_filter"
+  }, [_vm.houses == false ? _c("div", {
+    staticClass: "not_find"
+  }, [_c("h5", [_vm._v("Ci dispiace, nessun appartamento corrisponde con i filtri inseriti :(")])]) : _c("div", {
     staticClass: "row"
   }, _vm._l(_vm.houses, function (house) {
-    return _c("div", {
+    return _c("router-link", {
       key: house.id,
-      staticClass: "col-lg-4 col-md-6 col-sm-12 card_house"
-    }, [_c("ul", [_c("li", [_c("h2", [_vm._v(_vm._s(house.name))])]), _vm._v(" "), _c("li", [_c("img", {
-      attrs: {
-        src: house.image_path,
-        alt: house.name
-      }
-    })]), _vm._v(" "), _c("li", [_vm._v("\n            " + _vm._s(house.address) + "\n          ")])]), _vm._v(" "), _c("router-link", {
+      staticClass: "col-lg-4 col-md-6 col-sm-12 card_house",
       attrs: {
         to: {
           name: "house-details",
@@ -2487,8 +2487,17 @@ var render = function render() {
           }
         }
       }
-    }, [_vm._v("Dettaglio")])], 1);
-  }), 0)])]);
+    }, [_c("div", {
+      staticClass: "card_house_image"
+    }, [_c("img", {
+      attrs: {
+        src: house.image_path,
+        alt: house.name
+      }
+    })]), _vm._v(" "), _c("div", {
+      staticClass: "card_house_details"
+    }, [_c("h5", [_vm._v(_vm._s(house.name))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(house.address))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(house.price) + " euro/notte")])])]);
+  }), 1)])]);
 };
 
 var staticRenderFns = [];
@@ -2830,7 +2839,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "section.list_houses form .row {\n  gap: 0.625rem;\n}\nsection.list_houses form .input {\n  background-color: #bfd7ff;\n  color: #495867;\n  border: 0.0625rem solid #bfd7ff;\n  border-radius: 0.3125rem;\n  padding: 0.625rem;\n  width: 100%;\n}\nsection.list_houses form .input::-moz-placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .input::placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .btn {\n  background-color: #9bb1ff;\n  color: #f7f7ff;\n  border: 0.0625rem solid #9bb1ff;\n  display: flex;\n  align-items: center;\n}\nsection.list_houses form .btn.submit {\n  justify-content: center;\n}\nsection.list_houses form .btn:hover {\n  color: #495867;\n  background-color: #f7f7ff;\n  border: 0.0625rem solid #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle {\n  color: #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle .container .row {\n  justify-content: center;\n  align-items: center;\n}\nsection.list_houses .house_list_filter {\n  padding: 1.25rem;\n}\nsection.list_houses .house_list_filter .card_house {\n  background-color: #bfd7ff;\n  color: #495867;\n  border-radius: 1.25rem;\n  padding: 1.25rem;\n  border: 0.3125rem solid white;\n}\nsection.list_houses .house_list_filter .card_house ul {\n  list-style: none;\n}\nsection.list_houses .house_list_filter .card_house img {\n  width: 100%;\n}", ""]);
+exports.push([module.i, "section.list_houses form .row {\n  gap: 0.625rem;\n}\nsection.list_houses form .input {\n  background-color: #bfd7ff;\n  color: #495867;\n  border: 0.0625rem solid #bfd7ff;\n  border-radius: 0.3125rem;\n  padding: 0.625rem;\n  width: 100%;\n}\nsection.list_houses form .input::-moz-placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .input::placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .btn {\n  background-color: #9bb1ff;\n  color: #f7f7ff;\n  border: 0.0625rem solid #9bb1ff;\n  display: flex;\n  align-items: center;\n}\nsection.list_houses form .btn.submit {\n  justify-content: center;\n}\nsection.list_houses form .btn:hover {\n  color: #495867;\n  background-color: #f7f7ff;\n  border: 0.0625rem solid #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle {\n  color: #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle .container .row {\n  justify-content: center;\n  align-items: center;\n}\nsection.list_houses .house_list_filter {\n  padding: 1.25rem;\n}\nsection.list_houses .house_list_filter .card_house {\n  background-color: #bfd7ff;\n  color: #f7f7ff;\n  border-radius: 1.25rem;\n  padding: 0.625rem;\n  border: 0.3125rem solid white;\n  text-decoration: none;\n}\nsection.list_houses .house_list_filter .card_house_image {\n  width: 100%;\n  height: 70%;\n}\nsection.list_houses .house_list_filter .card_house_image img {\n  width: 100%;\n  height: 100%;\n  border-radius: 0.625rem;\n}\nsection.list_houses .house_list_filter .card_house_details {\n  text-align: left;\n  padding-top: 0.625rem;\n}\nsection.list_houses .house_list_filter .card_house_details p {\n  margin: 0;\n  color: #495867;\n  padding: 0;\n}\nsection.list_houses .house_list_filter .card_house_details h5 {\n  padding: 0;\n  margin: 0;\n}", ""]);
 
 // exports
 
@@ -2887,7 +2896,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.main {\r\n  text-align: center;\n}\r\n", ""]);
+exports.push([module.i, "\n.main {\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -19898,7 +19907,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\tania\Desktop\BOOLEAN\bool-bnb-final-project\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /Users/emanueleguidi/Desktop/BoolBnB-Team4/bool-bnb-final-project/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })

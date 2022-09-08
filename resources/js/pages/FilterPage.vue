@@ -14,11 +14,11 @@
           </div>
           <div class="col-md-2"> 
             <p>Stanze (n.)</p>
-            <input class="input" type="number" placeholder="Numero" v-model="number_rooms" min="1">
+            <input class="input" type="number" placeholder="Numero" v-model="number_rooms" min="0">
           </div>
           <div class="col-md-2">
             <p>Persone (n.)</p>
-            <input class="input" type="number" placeholder="Numero" v-model="number_beds" min="1">
+            <input class="input" type="number" placeholder="Numero" v-model="number_beds" min="0">
           </div>
           <!-- /input type  -->
           <!-- button submit  -->
@@ -34,23 +34,21 @@
           <!-- /dropdown menu  -->
       </div>
     </form>
-    <div class="container house_list_filter text-center">
-      <div class="row">
-        <div v-for="house in houses" :key="house.id" class="col-lg-4 col-md-6 col-sm-12 card_house ">
-          <ul>
-            <li>
-              <h2>{{house.name}}</h2>
-            </li>
-            <li>
-              <img :src="house.image_path" :alt="house.name">
-            </li>
-            <li>
-              {{house.address}}
-            </li>
-          </ul>
-          <router-link :to="{name: 'house-details', params: {id: house.id}}">Dettaglio</router-link>
-          <!-- <a href="/details">vai al dettaglio</a> -->
-        </div>
+    <div class="container house_list_filter">
+      <div v-if="houses == false" class="not_find">
+        <h5>Ci dispiace, nessun appartamento corrisponde con i filtri inseriti :(</h5> 
+      </div>
+      <div v-else class="row">
+        <router-link v-for="house in houses" :key="house.id" class="col-lg-4 col-md-6 col-sm-12 card_house" :to="{name: 'house-details', params: {id: house.id}}">
+          <div class="card_house_image">
+            <img :src="house.image_path" :alt="house.name">
+          </div>
+          <div class="card_house_details">
+            <h5>{{house.name}}</h5>
+            <p>{{house.address}}</p>
+            <p>{{house.price}} euro/notte</p>
+          </div>
+        </router-link>
       </div>
     </div>
   </section>
@@ -64,8 +62,8 @@ export default {
       servicesAvailable: '',
       address: '', //address filtered
       radius: '20', //radius filtered
-      number_rooms: '', //number of rooms filtered
-      number_beds: '', //number of beds filtered
+      number_rooms: '0', //number of rooms filtered
+      number_beds: '0', //number of beds filtered
       servicesFilter: [], //all services choose by user
       houses: [], //all houses from controller api
       position: [], // tom tom coordinates for input address address
@@ -107,27 +105,32 @@ export default {
   },
   methods: {
     filtersearch() {
-      axios.get(`https://api.tomtom.com/search/2/geocode/${this.address}.json?storeResult=false&view=Unified&key=oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N`)
-      .then((res) => {
-        this.position = res.data.results[0];
-        this.position = this.position.position
-
-        axios.post('api/houses/show',  {
-          coordinates: this.position, 
-          distance: this.radius, 
-          rooms: this.number_rooms, 
-          beds: this.number_beds ,
-          services: this.servicesFilter
-        })
+      if(!this.address == '') {
+        axios.get(`https://api.tomtom.com/search/2/geocode/${this.address}.json?storeResult=false&view=Unified&key=oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N`)
         .then((res) => {
-          console.log(res.data);
+          this.position = res.data.results[0];
+          this.position = this.position.position
+
+          axios.post('api/houses/show',  {
+            coordinates: this.position, 
+            distance: this.radius, 
+            rooms: this.number_rooms, 
+            beds: this.number_beds ,
+            services: this.servicesFilter
+          })
+          .then((res) => {
+            console.log(res.data, 'risposta finale');
             this.houses = res.data;
-            console.log(res.data)
+            console.log(this.houses, 'alberghi');
+          })
+          .catch(e => {
+              console.log(e)
+          })
         })
-        .catch(e => {
-            console.log(e)
-        })
-      })
+      } else {
+        this.houses = false;
+      }
+      
     }
   }
 }
@@ -186,18 +189,37 @@ section.list_houses {
 
     .card_house {
       background-color: #bfd7ff;
-      color: #495867;
+      color:#f7f7ff;
       border-radius: 1.25rem;
-      padding: 1.25rem;
+      padding: .625rem;
       border: .3125rem solid white;
+      text-decoration: none;
 
-      ul {
-        list-style: none;
-      }
-
-      img {
+      &_image {
         width: 100%;
+        height: 70%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: .625rem;
+        }
       }
+
+      &_details {
+        text-align: left;
+        padding-top: .625rem;
+        p {
+          margin: 0;
+          color: #495867;
+          padding: 0;
+        }
+        h5 {
+          padding: 0;
+          margin: 0;
+        }
+      }
+
     }
   }
 
