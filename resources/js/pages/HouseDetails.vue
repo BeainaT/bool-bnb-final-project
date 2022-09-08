@@ -56,26 +56,34 @@
             </div>
         </div>
     </div>
-    <form class="col-6" @submit.prevent="sendMsg()">
-        <div class="form-group">
-            <label for="exampleFormControlInput1">Nome</label>
-            <input type="text" class="form-control" placeholder="Inserisci il tuo nome" v-model="msgData.name" name="sender_name">
+    <div class="container_bottom d-flex py-2 justify-content-around">
+        <form class="col-6" @submit.prevent="sendMsg()">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Nome</label>
+                <input type="text" class="form-control" placeholder="Inserisci il tuo nome" v-model="msgData.name" name="sender_name">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">E-mail</label>
+                <input type="email" class="form-control" placeholder="name@example.com" v-model="msgData.email" name="sender_email">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Inserisci il messaggio</label>
+                <textarea class="form-control" rows="3" v-model="msgData.message" name="text"></textarea>
+            </div>
+            <button class="btn btn_send" type="submit">Contatta l'host</button>
+            <div class="text-success py-2" v-if="msgSent">Il messaggio è stato inviato all'host</div>
+        </form>
+        <div id="map-div" style="width:100%; height:400px; overflow: hidden;">
+            <div id="map" style="width:100%; height:400px;"></div>
         </div>
-        <div class="form-group">
-            <label for="exampleFormControlInput1">E-mail</label>
-            <input type="email" class="form-control" placeholder="name@example.com" v-model="msgData.email" name="sender_email">
-        </div>
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Inserisci il messaggio</label>
-            <textarea class="form-control" rows="3" v-model="msgData.message" name="text"></textarea>
-        </div>
-        <button class="btn btn_send" type="submit">Contatta l'host</button>
-    </form>
+    </div>
   </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import tt from '@tomtom-international/web-sdk-maps';
+
 export default {
     name: 'HouseDetails',
     data() {
@@ -86,14 +94,16 @@ export default {
                 email: '',
                 message: ''
             },
-            messages: {}
+            messages: {},
+            msgSent: false,
         }
     },
     created() {
         axios.get( `/api/houses/details/${this.$route.params.id}`)
         .then(res => {
             this.house = res.data;
-        })
+            this.mapCreate(this.house);
+        });
     },
     methods: {
         sendMsg() {
@@ -103,10 +113,24 @@ export default {
                     this.msgData.name = '';
                     this.msgData.email = '';
                     this.msgData.message = '';
+                    this.msgSent = true;
                 })
-        }
+        },
+        mapCreate(house) {
+            document.getElementById('map').innerHTML = '';
+            const map = tt.map({
+            key: 'Gtj5RKWvcq5LP9DUEi2JeewGgSDNceEA',
+            container: 'map',
+            center: [house.longitude, house.latitude],
+            zoom: 15,
+        });
+        // new tt.Marker()
+        // .setLngLat([house.longitude, house.latitude])
+        // .addTo(map);
+        },
     }
 }
+
 </script>
 
 <style lang="scss" scoped>
@@ -122,4 +146,11 @@ export default {
     .btn_send {
         background-color: #fe5f55;
     }
+    // #map {
+    //     width: 100%;
+    // }
+    // .map_container {
+    //     width: 31.25rem;
+    //     height: 12.5rem;
+    // }
 </style>
