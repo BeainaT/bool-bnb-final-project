@@ -2,12 +2,19 @@
   <section class="list_houses">
     <form @submit.prevent="filtersearch()" method="post">
       <div class="container">
-        <div class="row">
-          <!-- input type  -->
-          <div class="col">
-            <p>Località</p>
-            <input class="input" type="text" placeholder="Dove" v-model="address">
+        <div class="row justify-content-center">
+          <!-- input location type  -->
+          <div class="col-md-4 col-8">
+            <input class="input" type="text" placeholder="Dove vuoi soggiornare?" v-model="address">
           </div>
+          <!-- /input location  type  -->
+          <!-- button submit  -->
+          <button class="col-lg-2 col-md-2 col-4 btn submit" type="submit">Cerca</button> 
+          <!-- /button submit  -->
+        </div>
+      </div>
+      <div class="container" v-show="flagFilter == true">
+        <div class="row justify-content-center">
           <div class="col-md-2">
             <p>Distanza (km)</p>
             <input class="input" type="number" placeholder="Distanza" v-model="radius" min="1">
@@ -20,22 +27,19 @@
             <p>Persone (n.)</p>
             <input class="input" type="number" placeholder="Numero" v-model="number_beds" min="0">
           </div>
-          <!-- /input type  -->
-          <!-- button submit  -->
-          <button class="col-md-1 btn submit" type="submit">Ricerca</button> 
-          <!-- /button submit  -->
         </div>
         <div class="row justify-content-center">
-            <div v-for="service in servicesAvailable" :key="service.id">
+            <div v-for="service in servicesAvailable" :key="service.id" class="col-md-3 col-3">
                 <input type="checkbox" :id="service.name" :value="service.id" name="service" v-model="servicesFilter">
                 <label :for="service.name">{{service.name}}</label>
             </div>
         </div>
-          <!-- /dropdown menu  -->
       </div>
     </form>
+    <button v-show="flagFilter == false" class="btn" @click="showFilter()">Mostra filtri</button>
+    <button v-show="flagFilter == true" class="btn" @click="showFilter()">Nascondi filtri</button>
     <div class="container house_list_filter">
-      <div v-if="houses == false" class="not_find">
+      <div v-if="houses == false" class="not_houses">
         <h5>Ci dispiace, nessun appartamento corrisponde con i filtri inseriti :(</h5> 
       </div>
       <div v-else class="row">
@@ -67,6 +71,7 @@ export default {
       servicesFilter: [], //all services choose by user
       houses: [], //all houses from controller api
       position: [], // tom tom coordinates for input address address
+      flagFilter: false,
     }
   },
   created() {
@@ -104,6 +109,9 @@ export default {
     })
   },
   methods: {
+    showFilter() {
+      this.flagFilter = !this.flagFilter
+    },
     filtersearch() {
       if(!this.address == '') {
         axios.get(`https://api.tomtom.com/search/2/geocode/${this.address}.json?storeResult=false&view=Unified&key=oHGOEFAGV4iX7o3LHt7UGHGyvzr9hH1N`)
@@ -138,9 +146,12 @@ export default {
 
 <style lang="scss">
 section.list_houses {
+  padding: 0 .625rem;
   form {
     .row {
       gap: .625rem;
+      align-items: center;
+      margin: .625rem 0;
     }
     .input {
       background-color: #bfd7ff;
@@ -150,11 +161,9 @@ section.list_houses {
       padding: .625rem;
       width: 100%;
     }
-
     .input::placeholder {
         color: #f7f7ff;
     }
-
     .btn {
       background-color: #9bb1ff;
       color: #f7f7ff;
@@ -162,31 +171,33 @@ section.list_houses {
       display: flex;
       align-items: center;
     }
-
     .btn.submit {
       justify-content: center;
     }
-
     .btn:hover {
       color: #495867;
       background-color: #f7f7ff;
       border: .0625rem solid #f7f7ff;
+    }
+
+    .btn.filters {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #bfd7ff;
+      border: .0625rem solid #bfd7ff;
 
     }
-    .dropdown-toggle {
-      color: #f7f7ff;
-      .container {
-        .row {
-        justify-content: center;
-        align-items: center;
-
-        }
-      }
-    }
+    
   }
+
+
   .house_list_filter {
     padding: 1.25rem;
 
+    .not_houses {
+      color: #fe5f55;
+    }
     .card_house {
       background-color: #bfd7ff;
       color:#f7f7ff;

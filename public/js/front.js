@@ -1996,8 +1996,9 @@ __webpack_require__.r(__webpack_exports__);
       //all services choose by user
       houses: [],
       //all houses from controller api
-      position: [] // tom tom coordinates for input address address
-
+      position: [],
+      // tom tom coordinates for input address address
+      flagFilter: false
     };
   },
   created: function created() {
@@ -2031,6 +2032,9 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    showFilter: function showFilter() {
+      this.flagFilter = !this.flagFilter;
+    },
     filtersearch: function filtersearch() {
       var _this2 = this;
 
@@ -2354,10 +2358,10 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "container"
   }, [_c("div", {
-    staticClass: "row"
+    staticClass: "row justify-content-center"
   }, [_c("div", {
-    staticClass: "col"
-  }, [_c("p", [_vm._v("Località")]), _vm._v(" "), _c("input", {
+    staticClass: "col-md-4 col-8"
+  }, [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2367,7 +2371,7 @@ var render = function render() {
     staticClass: "input",
     attrs: {
       type: "text",
-      placeholder: "Dove"
+      placeholder: "Dove vuoi soggiornare?"
     },
     domProps: {
       value: _vm.address
@@ -2378,7 +2382,22 @@ var render = function render() {
         _vm.address = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _c("button", {
+    staticClass: "col-lg-2 col-md-2 col-4 btn submit",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Cerca")])])]), _vm._v(" "), _c("div", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.flagFilter == true,
+      expression: "flagFilter == true"
+    }],
+    staticClass: "container"
+  }, [_c("div", {
+    staticClass: "row justify-content-center"
+  }, [_c("div", {
     staticClass: "col-md-2"
   }, [_c("p", [_vm._v("Distanza (km)")]), _vm._v(" "), _c("input", {
     directives: [{
@@ -2450,16 +2469,12 @@ var render = function render() {
         _vm.number_beds = $event.target.value;
       }
     }
-  })]), _vm._v(" "), _c("button", {
-    staticClass: "col-md-1 btn submit",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("Ricerca")])]), _vm._v(" "), _c("div", {
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "row justify-content-center"
   }, _vm._l(_vm.servicesAvailable, function (service) {
     return _c("div", {
-      key: service.id
+      key: service.id,
+      staticClass: "col-md-3 col-3"
     }, [_c("input", {
       directives: [{
         name: "model",
@@ -2501,10 +2516,36 @@ var render = function render() {
         "for": service.name
       }
     }, [_vm._v(_vm._s(service.name))])]);
-  }), 0)])]), _vm._v(" "), _c("div", {
+  }), 0)])]), _vm._v(" "), _c("button", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.flagFilter == false,
+      expression: "flagFilter == false"
+    }],
+    staticClass: "btn",
+    on: {
+      click: function click($event) {
+        return _vm.showFilter();
+      }
+    }
+  }, [_vm._v("Mostra filtri")]), _vm._v(" "), _c("button", {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: _vm.flagFilter == true,
+      expression: "flagFilter == true"
+    }],
+    staticClass: "btn",
+    on: {
+      click: function click($event) {
+        return _vm.showFilter();
+      }
+    }
+  }, [_vm._v("Nascondi filtri")]), _vm._v(" "), _c("div", {
     staticClass: "container house_list_filter"
   }, [_vm.houses == false ? _c("div", {
-    staticClass: "not_find"
+    staticClass: "not_houses"
   }, [_c("h5", [_vm._v("Ci dispiace, nessun appartamento corrisponde con i filtri inseriti :(")])]) : _c("div", {
     staticClass: "row"
   }, _vm._l(_vm.houses, function (house) {
@@ -2897,7 +2938,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "section.list_houses form .row {\n  gap: 0.625rem;\n}\nsection.list_houses form .input {\n  background-color: #bfd7ff;\n  color: #495867;\n  border: 0.0625rem solid #bfd7ff;\n  border-radius: 0.3125rem;\n  padding: 0.625rem;\n  width: 100%;\n}\nsection.list_houses form .input::-moz-placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .input::placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .btn {\n  background-color: #9bb1ff;\n  color: #f7f7ff;\n  border: 0.0625rem solid #9bb1ff;\n  display: flex;\n  align-items: center;\n}\nsection.list_houses form .btn.submit {\n  justify-content: center;\n}\nsection.list_houses form .btn:hover {\n  color: #495867;\n  background-color: #f7f7ff;\n  border: 0.0625rem solid #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle {\n  color: #f7f7ff;\n}\nsection.list_houses form .dropdown-toggle .container .row {\n  justify-content: center;\n  align-items: center;\n}\nsection.list_houses .house_list_filter {\n  padding: 1.25rem;\n}\nsection.list_houses .house_list_filter .card_house {\n  background-color: #bfd7ff;\n  color: #f7f7ff;\n  border-radius: 1.25rem;\n  padding: 0.625rem;\n  border: 0.3125rem solid white;\n  text-decoration: none;\n}\nsection.list_houses .house_list_filter .card_house_image {\n  width: 100%;\n  height: 70%;\n}\nsection.list_houses .house_list_filter .card_house_image img {\n  width: 100%;\n  height: 100%;\n  border-radius: 0.625rem;\n}\nsection.list_houses .house_list_filter .card_house_details {\n  text-align: left;\n  padding-top: 0.625rem;\n}\nsection.list_houses .house_list_filter .card_house_details p {\n  margin: 0;\n  color: #495867;\n  padding: 0;\n}\nsection.list_houses .house_list_filter .card_house_details h5 {\n  padding: 0;\n  margin: 0;\n}", ""]);
+exports.push([module.i, "section.list_houses {\n  padding: 0 0.625rem;\n}\nsection.list_houses form .row {\n  gap: 0.625rem;\n  align-items: center;\n  margin: 0.625rem 0;\n}\nsection.list_houses form .input {\n  background-color: #bfd7ff;\n  color: #495867;\n  border: 0.0625rem solid #bfd7ff;\n  border-radius: 0.3125rem;\n  padding: 0.625rem;\n  width: 100%;\n}\nsection.list_houses form .input::-moz-placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .input::placeholder {\n  color: #f7f7ff;\n}\nsection.list_houses form .btn {\n  background-color: #9bb1ff;\n  color: #f7f7ff;\n  border: 0.0625rem solid #9bb1ff;\n  display: flex;\n  align-items: center;\n}\nsection.list_houses form .btn.submit {\n  justify-content: center;\n}\nsection.list_houses form .btn:hover {\n  color: #495867;\n  background-color: #f7f7ff;\n  border: 0.0625rem solid #f7f7ff;\n}\nsection.list_houses form .btn.filters {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  background-color: #bfd7ff;\n  border: 0.0625rem solid #bfd7ff;\n}\nsection.list_houses .house_list_filter {\n  padding: 1.25rem;\n}\nsection.list_houses .house_list_filter .not_houses {\n  color: #fe5f55;\n}\nsection.list_houses .house_list_filter .card_house {\n  background-color: #bfd7ff;\n  color: #f7f7ff;\n  border-radius: 1.25rem;\n  padding: 0.625rem;\n  border: 0.3125rem solid white;\n  text-decoration: none;\n}\nsection.list_houses .house_list_filter .card_house_image {\n  width: 100%;\n  height: 70%;\n}\nsection.list_houses .house_list_filter .card_house_image img {\n  width: 100%;\n  height: 100%;\n  border-radius: 0.625rem;\n}\nsection.list_houses .house_list_filter .card_house_details {\n  text-align: left;\n  padding-top: 0.625rem;\n}\nsection.list_houses .house_list_filter .card_house_details p {\n  margin: 0;\n  color: #495867;\n  padding: 0;\n}\nsection.list_houses .house_list_filter .card_house_details h5 {\n  padding: 0;\n  margin: 0;\n}", ""]);
 
 // exports
 
