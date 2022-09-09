@@ -52,6 +52,7 @@ class HouseController extends Controller
                 ->where('longitude', '>=', $minlon)
                 ->where('latitude', '<=', $maxlat)
                 ->where('latitude', '>=', $minlat)
+                ->where('is_visible', 1)
                 ->get();
 
                 if ($houses == []) {
@@ -64,6 +65,7 @@ class HouseController extends Controller
                 ->where('longitude', '>=', $minlon)
                 ->where('latitude', '<=', $maxlat)
                 ->where('latitude', '>=', $minlat)
+                ->where('is_visible', 1)
                 ->get();
 
             if ($allHouses == []) {
