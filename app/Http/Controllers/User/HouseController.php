@@ -38,12 +38,11 @@ class HouseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(House $house)
     {
         // $houses = House::all();
-        $user = Auth::user();
-        $houses = $user->houses;
-
+        // $houses = $user->houses;
+        $houses = Auth::user()->houses;
         return view('user.houses.index', compact('houses'));
     }
 
@@ -118,8 +117,7 @@ class HouseController extends Controller
         $typology = Typology::where('id', $house->typology_id)->first();
 
         //get services connected to the house
-        $services = $house->services()->get();
-    
+        $services = $house->services()->get();    
 
 
         return view('user.houses.show', compact('house', 'typology', 'services'));

@@ -2627,14 +2627,14 @@ var render = function render() {
   }, [_c("h2", [_vm._v("Pagina dettaglio casa " + _vm._s(_vm.house.name))])]), _vm._v(" "), _c("div", {
     staticClass: "row card_house justify-content-between"
   }, [_c("div", {
-    staticClass: "col-4"
+    staticClass: "col-lg-4 col-md-6 col-sm-10"
   }, [_c("img", {
     attrs: {
       src: _vm.house.image_path,
       alt: _vm.house.name
     }
   })]), _vm._v(" "), _c("div", {
-    staticClass: "col-6 text-left"
+    staticClass: "col-lg-6 col-md-6 col-sm-12 text-left"
   }, [_c("address", [_c("strong", [_vm._v("Indirizzo: ")]), _vm._v(_vm._s(_vm.house.address))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(_vm.house.description))]), _vm._v(" "), _c("div", {
     staticClass: "row my-3"
   }, [_c("div", {
@@ -2661,10 +2661,10 @@ var render = function render() {
     staticClass: "row text-center"
   }, [_vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "col-12"
-  }, [_vm._v("\n                          " + _vm._s(_vm.house.square_meters) + "\n                      ")])])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "container_bottom d-flex py-2 justify-content-around"
+  }, [_vm._v("\n                          " + _vm._s(_vm.house.square_meters) + "\n                      ")])])])]), _vm._v(" "), _c("div", [_c("strong", [_vm._v("Prezzo: ")]), _vm._v(_vm._s(_vm.house.price) + " €/notte")])])]), _vm._v(" "), _c("div", {
+    staticClass: "container_bottom d-flex flex-wrap py-2 justify-content-around"
   }, [_c("form", {
-    staticClass: "col-6",
+    staticClass: "col-lg-6 col-sm-8 mb-2",
     on: {
       submit: function submit($event) {
         $event.preventDefault();
@@ -2744,7 +2744,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      rows: "3",
+      rows: "4",
       name: "text"
     },
     domProps: {
@@ -2808,6 +2808,7 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
+    staticClass: "col-lg-6 col-sm-10",
     staticStyle: {
       width: "100%",
       height: "400px",
