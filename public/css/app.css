@@ -21651,6 +21651,15 @@ main .container_house_image .img_house_show {
   color: #f7f7ff;
 }
 
+.btn_promotes {
+  font-weight: bold;
+}
+
+.btn_promotes .promote_name {
+  text-transform: uppercase;
+  color: #fe5f55;
+}
+
 /*----------------
     FOOTER
 ----------------*/

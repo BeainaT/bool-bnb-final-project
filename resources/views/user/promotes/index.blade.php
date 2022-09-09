@@ -6,14 +6,19 @@
             <div class="card-header mb-2">
                 <h2>Sponsorizza appartamento</h2>
             </div>
-            @foreach ($promotes as $promote)
-            <button class="btn">
-                {{-- <a href="{{route('user.promotes.show', $promote->id)}}"> --}}
-                    {{$promote->name}}
-                    {{$promote->price}} €
-                {{-- </a> --}}
-            </button>
-            @endforeach
+            <div class="container-md text-center pt-1 pb-3 promotes">
+                @foreach ($promotes as $promote)
+                    <a href="{{route('user.promotes.show', ['promote' => $promote->id, 'house' => $house->id])}}">
+                        <div class="btn btn_promotes col-6 my-2">
+                            <span class="promote_name">{{$promote->name}}:</span> {{$promote->price}} € per {{$promote->duration}}/h
+                        </div>
+                    </a>
+                @endforeach
+                <hr>
+                <div class="row">
+                    <a class="btn col-5" href="{{route('user.houses.index')}}">Torna alla lista</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

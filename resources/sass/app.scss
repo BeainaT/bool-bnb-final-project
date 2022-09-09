@@ -214,7 +214,13 @@ main {
         color: $ghost_white;
     }
 }
-
+.btn_promotes {
+    font-weight: bold;
+    .promote_name {
+        text-transform: uppercase;
+        color: $orange_red;
+    }
+}
 
 
 /*----------------

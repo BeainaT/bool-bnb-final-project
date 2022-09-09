@@ -43,9 +43,6 @@
                             </div>
                             <hr>
                         @endforeach
-                        <div class="col-12 py-1 text-center">
-                            <a class="btn icon" href="{{route('user.messages.index')}}"><i class="fa-solid fa-message"></i></a>
-                        </div>
                     </div>
                     <div class="container">
                         <div class="row justify-content-between">
