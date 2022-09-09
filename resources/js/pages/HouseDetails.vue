@@ -69,7 +69,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Inserisci il messaggio</label>
-                <textarea class="form-control" rows="3" v-model="msgData.message" name="text"></textarea>
+                <textarea class="form-control" rows="4" v-model="msgData.message" name="text"></textarea>
             </div>
             <button class="btn btn_send" type="submit">Contatta l'host</button>
             <div class="text-success py-2" v-if="msgSent">Il messaggio è stato inviato all'host</div>

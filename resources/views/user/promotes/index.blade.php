@@ -7,8 +7,12 @@
                 <h2>Sponsorizza appartamento</h2>
             </div>
             @foreach ($promotes as $promote)
-                {{$promote->name}}
-                {{$promote->price}}
+            <button class="btn">
+                {{-- <a href="{{route('user.promotes.show', $promote->id)}}"> --}}
+                    {{$promote->name}}
+                    {{$promote->price}} €
+                {{-- </a> --}}
+            </button>
             @endforeach
         </div>
     </div>

@@ -27,3 +27,5 @@ Route::get('houses/details/{id}', 'Api\HouseController@houseDetails');
 Route::post('messages/{house_id}', 'Api\MessageController@store');
 
 Route::get('services', 'Api\ServiceController@index');
+
+Route::get('promotes', 'Api\PromoteController@index');

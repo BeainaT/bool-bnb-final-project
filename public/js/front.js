@@ -2701,7 +2701,7 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      rows: "3",
+      rows: "4",
       name: "text"
     },
     domProps: {

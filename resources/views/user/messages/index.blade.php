@@ -62,8 +62,9 @@
                 @else                     
                     <p class="py-4">Non ci sono messaggi per questa struttura</p>
                 @endif
-                <div class="py-2">
-                    <a class="btn col-5" href="{{route('user.dashboard')}}">Torna alla Dashboard</a>
+                <div class="card-body d-flex justify-content-between">
+                    <a class="btn col-5" href="{{route('user.dashboard')}}">Torna alla Dashboard</a>          
+                    <a class="btn col-5" href="{{route('user.houses.index')}}">Torna alla Lista</a>
                 </div>
             </div>
         </div>
