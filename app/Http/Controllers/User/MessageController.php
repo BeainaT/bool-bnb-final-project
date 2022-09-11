@@ -18,8 +18,8 @@ class MessageController extends Controller
         return view('user.messages.index', compact('messages'));
     }
     public function destroy(Message $message) {
-
+        $house = $message->house_id;
         $message->delete();
-        return redirect()->route('user.messages.index');
+        return redirect()->route('user.messages.index', $house);
     }
 }

@@ -22,7 +22,7 @@ Route::middleware('auth')
 ->group(function() {
     Route::get('/home', 'HomeController@index')->name('dashboard');
     Route::resource('houses', 'HouseController');
-    Route::get('messages/{house?}', 'MessageController@index')->name('messages.index');
+    Route::get('messages/{house}', 'MessageController@index')->name('messages.index');
     Route::delete('messages/{message}', 'MessageController@destroy')->name('messages.destroy');
     Route::get('houses/{house}/promotes', 'PromoteController@index')->name('promotes.index');
     Route::get('houses/{house}/promotes/{promote}', 'PromoteController@show')->name('promotes.show');
