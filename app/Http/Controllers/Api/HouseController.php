@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\House;
 use App\Service;
+use App\Promote;
 
 class HouseController extends Controller
 {
     public function index() {
-        $houses = House::all();
+        $houses = House::with('promotes')->get();
         return $houses;
     }
 

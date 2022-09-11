@@ -18,6 +18,11 @@
                 <div class="row">
                     <a class="btn col-5" href="{{route('user.houses.index')}}">Torna alla lista</a>
                 </div>
+                @if (session('status'))
+                    <div class="my-3">
+                        <p>{{session('status')}}</p>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

@@ -26,6 +26,7 @@ Route::middleware('auth')
     Route::delete('messages/{message}', 'MessageController@destroy')->name('messages.destroy');
     Route::get('houses/{house}/promotes', 'PromoteController@index')->name('promotes.index');
     Route::get('houses/{house}/promotes/{promote}', 'PromoteController@show')->name('promotes.show');
+    Route::post('/checkout', 'PromoteController@payment')->name('promote.payment');
 });
 
 

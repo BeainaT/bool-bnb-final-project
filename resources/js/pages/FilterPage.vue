@@ -39,7 +39,7 @@
     <button v-show="flagFilter == false" class="btn" @click="showFilter()">Mostra filtri</button>
     <button v-show="flagFilter == true" class="btn" @click="showFilter()">Nascondi filtri</button>
     <div class="container house_list_filter">
-      <div v-if="houses == false" class="not_houses">
+      <div v-if="(houses == false)" class="not_houses">
         <h5>Ci dispiace, nessun appartamento corrisponde con i filtri inseriti :(</h5> 
       </div>
       <div v-else class="row">
@@ -72,6 +72,7 @@ export default {
       houses: [], //all houses from controller api
       position: [], // tom tom coordinates for input address address
       flagFilter: false,
+      houses: true
     }
   },
   created() {
@@ -79,7 +80,6 @@ export default {
     axios.get('api/services')
     .then((res) => {
       this.servicesAvailable = res.data;
-      console.log(res.data, 'services');
     })
     .catch(e => {
       console.log(e);
@@ -97,7 +97,7 @@ export default {
           distance: this.radius, 
           rooms: this.number_rooms, 
           beds: this.number_beds,
-          services: this.servicesFilter
+          services: this.servicesFilter,
         })
         .then((res) => {
             this.houses = res.data;
@@ -127,9 +127,7 @@ export default {
             services: this.servicesFilter
           })
           .then((res) => {
-            console.log(res.data, 'risposta finale');
             this.houses = res.data;
-            console.log(this.houses, 'alberghi');
           })
           .catch(e => {
               console.log(e)
@@ -140,7 +138,7 @@ export default {
       }
       
     }
-  }
+  },
 }
 </script>
 
