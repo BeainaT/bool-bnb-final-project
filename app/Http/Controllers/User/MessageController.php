@@ -15,7 +15,6 @@ class MessageController extends Controller
             $query->where('user_id', auth()->user()->id);
          })->where('house_id', $id)->orderBy('id', 'DESC')->get();
 
-        // $house_id = House::has('messages')->where('id', $id)->get();        
         return view('user.messages.index', compact('messages'));
     }
     public function destroy(Message $message) {

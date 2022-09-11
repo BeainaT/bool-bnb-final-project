@@ -14,7 +14,7 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-      </div>
+        </div>
     </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     data(){
         return {
             slides: [],
-            imgSlider: []
+            imgSlider: [],
         }
     },
     created() {
@@ -33,13 +33,11 @@ export default {
             .then((res) => {
                 this.imgSlider = res.data;
                 this.imgSlider.forEach((elm) => {
-                    if(elm.image[0] == 'i') {
-                        this.slides.push(elm.image);
-                    } else {
-                        this.slides.push(`./storage/${elm.image}`)
-                    }                    
+                    if(elm.promotes.length > 0) {
+                        this.slides.push(elm.image_path);
+                    }
                 }) 
-            }) 
+            })
     },
 }
 </script>

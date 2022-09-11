@@ -15,14 +15,14 @@
                     <hr>
                     <a class="btn col-5" href="{{route('user.houses.index')}}">Torna alla lista</a> --}}
                     <div class="container">
-                        <form action="{{route('user.promote.payment')}}" id="payment-form" method="post">
+                        <form action="{{route('user.promote.payment', ['promote' => $promote->id, 'house' => $house->id])}}" id="payment-form" method="post">
                             @csrf
                             <input type="hidden" name="house_id" value="{{$house->id}}">
                             <input type="hidden" name="amount" value="{{$promote->price}}">
                             <input type="hidden" name="promote_id" value="{{$promote->id}}">
-                            {{-- <div class="bt-drop-in-wrapper"> --}}
+                            <input type="hidden" name="name" value="{{$promote->name}}">
+                            <input type="hidden" name="duration" value="{{$promote->duration}}">
                                 <div id="bt-dropin"></div>
-                            {{-- </div> --}}
                             <input id="nonce" name="payment_method_nonce" type="hidden" />
                             <button class="btn mt-5" type="submit"><span>pagamento</span></button>
                         </form>
@@ -40,9 +40,6 @@
   braintree.dropin.create({
     authorization: client_token,
     selector: '#bt-dropin',
-    // paypal: {
-    //   flow: 'vault'
-    // }
   }, function (createErr, instance) {
     if (createErr) {
       console.log('Create Error', createErr);
@@ -55,7 +52,6 @@
           console.log('Request Payment Method Error', err);
           return;
         }
-        // Add the nonce to the form and submit
         document.querySelector('#nonce').value = payload.nonce;
         form.submit();
       });

@@ -1938,10 +1938,8 @@ __webpack_require__.r(__webpack_exports__);
       _this.imgSlider = res.data;
 
       _this.imgSlider.forEach(function (elm) {
-        if (elm.image[0] == 'i') {
-          _this.slides.push(elm.image);
-        } else {
-          _this.slides.push("./storage/".concat(elm.image));
+        if (elm.promotes.length > 0) {
+          _this.slides.push(elm.image_path);
         }
       });
     });
@@ -1979,10 +1977,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'FilterPage',
   data: function data() {
-    return {
+    return _defineProperty({
       servicesAvailable: '',
       address: '',
       //address filtered
@@ -1999,7 +1999,7 @@ __webpack_require__.r(__webpack_exports__);
       position: [],
       // tom tom coordinates for input address address
       flagFilter: false
-    };
+    }, "houses", true);
   },
   created: function created() {
     var _this = this;
@@ -2007,7 +2007,6 @@ __webpack_require__.r(__webpack_exports__);
     //api to obtain services and populate checkbox in form
     axios.get('api/services').then(function (res) {
       _this.servicesAvailable = res.data;
-      console.log(res.data, 'services');
     })["catch"](function (e) {
       console.log(e);
     }); //api to get user's input coordinates
@@ -2049,9 +2048,7 @@ __webpack_require__.r(__webpack_exports__);
             beds: _this2.number_beds,
             services: _this2.servicesFilter
           }).then(function (res) {
-            console.log(res.data, 'risposta finale');
             _this2.houses = res.data;
-            console.log(_this2.houses, 'alberghi');
           })["catch"](function (e) {
             console.log(e);
           });
@@ -20056,7 +20053,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\esercizi_php\bool-bnb-final-project\resources\js\front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! C:\Users\tania\Desktop\BOOLEAN\bool-bnb-final-project\resources\js\front.js */"./resources/js/front.js");
 
 
 /***/ })

@@ -57,6 +57,11 @@
                             @endif
                         </ul>
                     </div>
+                    @if (session('status'))
+                        <div class="my-3">
+                            <p>{{session('status')}}</p>
+                        </div>
+                    @endif
                     <div class="container">
                         <div class="row justify-content-between">
                             <a class="btn col-5" href="{{route('user.houses.index')}}">Torna alla lista</a>

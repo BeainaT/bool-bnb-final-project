@@ -148,11 +148,4 @@ export default {
     .btn_send {
         background-color: #fe5f55;
     }
-    // #map {
-    //     width: 100%;
-    // }
-    // .map_container {
-    //     width: 31.25rem;
-    //     height: 12.5rem;
-    // }
 </style>
