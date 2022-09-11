@@ -43,7 +43,7 @@
                                         <h6>{{$message->sender_email}}</h6>
                                     </div>
                                     <div class="col-md-12 py-2">
-                                        <small>Messaggio del: {{date('d-m-Y'), strtotime($message->created_at)}}</small>
+                                        <small>Messaggio del: {{$message->created_at->format('d-m-Y')}}</small>
                                     </div>
                                 </div>
                             </div>

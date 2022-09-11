@@ -36,6 +36,6 @@ class House extends Model
         return $this->belongsToMany('App\Service');
     }
     public function promotes(){
-        return $this->belongsToMany('App\Promote');
+        return $this->belongsToMany('App\Promote', 'promote_house');
     }
 }
